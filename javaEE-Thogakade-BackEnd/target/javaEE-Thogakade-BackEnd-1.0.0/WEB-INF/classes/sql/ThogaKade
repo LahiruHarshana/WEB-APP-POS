@@ -1,0 +1,31 @@
+
+CREATE TABLE Items (
+    ItemCode VARCHAR(50) PRIMARY KEY,
+    ItemName VARCHAR(255),
+    ItemPrice DECIMAL(10, 2),
+    ItemQuantity INT
+);
+
+CREATE TABLE customer (
+    cusID VARCHAR(50) PRIMARY KEY,
+    cusName VARCHAR(255),
+    cusAddress VARCHAR(255),
+    cusSalary DECIMAL(10, 2)
+);
+
+CREATE TABLE orders (
+    orderID VARCHAR(50) PRIMARY KEY,
+    orderDate DATE,
+    cusID VARCHAR(10),
+    FOREIGN KEY (cusID) REFERENCES customer(cusID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Order_Detail (
+    itemCode VARCHAR(50),
+    orderID VARCHAR(50),
+    quantity INT,
+    itemPrice DECIMAL(10, 2),
+    PRIMARY KEY (itemCode, orderID),
+    FOREIGN KEY (itemCode) REFERENCES Items(ItemCode) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (orderID) REFERENCES Orders(orderID) ON DELETE CASCADE ON UPDATE CASCADE
+);

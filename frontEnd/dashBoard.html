@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <style>
+        @keyframes move {
+            100% {
+                transform: translate3d(0, 0, 1px) rotate(360deg);
+            }
+        }
+
+        .background {
+            z-index: -10000;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background: #0f1157;
+            overflow: hidden;
+        }
+
+        .background span {
+            width: 1vmin;
+            height: 1vmin;
+            border-radius: 1vmin;
+            backface-visibility: hidden;
+            position: absolute;
+            animation: move;
+            animation-duration:45ms;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+
+        .background span:nth-child(0) {
+            color: #00ebe7;
+            top: 85%;
+            left: 97%;
+            animation-duration: 18s;
+            animation-delay: -47s;
+            transform-origin: -1vw -24vh;
+            box-shadow: -2vmin 0 0.43356971012749157vmin currentColor;
+        }
+        .background span:nth-child(1) {
+            color: #000000;
+            top: 88%;
+            left: 39%;
+            animation-duration: 25s;
+            animation-delay: -11s;
+            transform-origin: 23vw 7vh;
+            box-shadow: -2vmin 0 0.7805641788677828vmin currentColor;
+        }
+        .background span:nth-child(2) {
+            color: #00f549;
+            top: 83%;
+            left: 95%;
+            animation-duration: 41s;
+            animation-delay: -20s;
+            transform-origin: 10vw -1vh;
+            box-shadow: -2vmin 0 0.34179231664903553vmin currentColor;
+        }
+        .background span:nth-child(3) {
+            color: #7aa7ff;
+            top: 93%;
+            left: 91%;
+            animation-duration: 21s;
+            animation-delay: -33s;
+            transform-origin: 1vw 25vh;
+            box-shadow: -2vmin 0 0.3922943303112594vmin currentColor;
+        }
+        .background span:nth-child(4) {
+            color: #000000;
+            top: 29%;
+            left: 19%;
+            animation-duration: 45s;
+            animation-delay: -43s;
+            transform-origin: 0vw -23vh;
+            box-shadow: 2vmin 0 1.016420094588246vmin currentColor;
+        }
+        .background span:nth-child(5) {
+            color: #000000;
+            top: 61%;
+            left: 84%;
+            animation-duration: 21s;
+            animation-delay: -14s;
+            transform-origin: 16vw -1vh;
+            box-shadow: 2vmin 0 0.5709892489990489vmin currentColor;
+        }
+        .background span:nth-child(6) {
+            color: #00ebe7;
+            top: 85%;
+            left: 32%;
+            animation-duration: 22s;
+            animation-delay: -28s;
+            transform-origin: 20vw 1vh;
+            box-shadow: 2vmin 0 0.5160561953794718vmin currentColor;
+        }
+        .background span:nth-child(7) {
+            color: #00f549;
+            top: 84%;
+            left: 20%;
+            animation-duration: 48s;
+            animation-delay: -26s;
+            transform-origin: -10vw 0vh;
+            box-shadow: -2vmin 0 1.1072159913260093vmin currentColor;
+        }
+        .background span:nth-child(8) {
+            color: #00ebe7;
+            top: 76%;
+            left: 1%;
+            animation-duration: 41s;
+            animation-delay: -25s;
+            transform-origin: -16vw -23vh;
+            box-shadow: -2vmin 0 0.8044261547820524vmin currentColor;
+        }
+        .background span:nth-child(9) {
+            color: #7aa7ff;
+            top: 81%;
+            left: 99%;
+            animation-duration: 20s;
+            animation-delay: -25s;
+            transform-origin: 8vw 14vh;
+            box-shadow: -2vmin 0 1.1550969502511614vmin currentColor;
+        }
+        .background span:nth-child(10) {
+            color: #7aa7ff;
+            top: 83%;
+            left: 61%;
+            animation-duration: 29s;
+            animation-delay: -13s;
+            transform-origin: 13vw 8vh;
+            box-shadow: -2vmin 0 0.7274391782137757vmin currentColor;
+        }
+        .background span:nth-child(11) {
+            color: #00f549;
+            top: 25%;
+            left: 32%;
+            animation-duration: 33s;
+            animation-delay: -4s;
+            transform-origin: -19vw 16vh;
+            box-shadow: 2vmin 0 0.7998986673932811vmin currentColor;
+        }
+        .background span:nth-child(12) {
+            color: #000000;
+            top: 24%;
+            left: 48%;
+            animation-duration: 35s;
+            animation-delay: -5s;
+            transform-origin: -18vw 20vh;
+            box-shadow: 2vmin 0 0.4801630956236118vmin currentColor;
+        }
+        .background span:nth-child(13) {
+            color: #00f549;
+            top: 32%;
+            left: 43%;
+            animation-duration: 39s;
+            animation-delay: -40s;
+            transform-origin: 23vw 0vh;
+            box-shadow: -2vmin 0 0.8237793560856275vmin currentColor;
+        }
+        .background span:nth-child(14) {
+            color: #00ebe7;
+            top: 34%;
+            left: 5%;
+            animation-duration: 24s;
+            animation-delay: -37s;
+            transform-origin: -3vw -5vh;
+            box-shadow: 2vmin 0 0.6994482844001602vmin currentColor;
+        }
+        .background span:nth-child(15) {
+            color: #00ebe7;
+            top: 52%;
+            left: 26%;
+            animation-duration: 35s;
+            animation-delay: -29s;
+            transform-origin: 1vw -16vh;
+            box-shadow: -2vmin 0 1.055440712385625vmin currentColor;
+        }
+        .background span:nth-child(16) {
+            color: #00ebe7;
+            top: 20%;
+            left: 40%;
+            animation-duration: 29s;
+            animation-delay: -50s;
+            transform-origin: -21vw -17vh;
+            box-shadow: 2vmin 0 0.9676265121847527vmin currentColor;
+        }
+        .background span:nth-child(17) {
+            color: #00f549;
+            top: 49%;
+            left: 39%;
+            animation-duration: 15s;
+            animation-delay: -34s;
+            transform-origin: 5vw 24vh;
+            box-shadow: -2vmin 0 0.6330602184702852vmin currentColor;
+        }
+        .background span:nth-child(18) {
+            color: #7aa7ff;
+            top: 3%;
+            left: 23%;
+            animation-duration: 15s;
+            animation-delay: -24s;
+            transform-origin: -12vw 6vh;
+            box-shadow: -2vmin 0 1.1522164621717776vmin currentColor;
+        }
+        .background span:nth-child(19) {
+            color: #7aa7ff;
+            top: 66%;
+            left: 81%;
+            animation-duration: 14s;
+            animation-delay: -45s;
+            transform-origin: -17vw -18vh;
+            box-shadow: 2vmin 0 1.2095511924796263vmin currentColor;
+        }
+        .background span:nth-child(20) {
+            color: #7aa7ff;
+            top: 69%;
+            left: 74%;
+            animation-duration: 22s;
+            animation-delay: -24s;
+            transform-origin: 20vw -19vh;
+            box-shadow: 2vmin 0 0.3478499535472981vmin currentColor;
+        }
+        .background span:nth-child(21) {
+            color: #00f549;
+            top: 64%;
+            left: 96%;
+            animation-duration: 6s;
+            animation-delay: -16s;
+            transform-origin: 0vw 3vh;
+            box-shadow: -2vmin 0 0.3880820081041776vmin currentColor;
+        }
+        .background span:nth-child(22) {
+            color: #00ebe7;
+            top: 97%;
+            left: 21%;
+            animation-duration: 32s;
+            animation-delay: -10s;
+            transform-origin: -17vw -2vh;
+            box-shadow: 2vmin 0 1.2235351411961293vmin currentColor;
+        }
+        .background span:nth-child(23) {
+            color: #000000;
+            top: 77%;
+            left: 31%;
+            animation-duration: 16s;
+            animation-delay: -8s;
+            transform-origin: 16vw 15vh;
+            box-shadow: 2vmin 0 0.2793109550793986vmin currentColor;
+        }
+        .background span:nth-child(24) {
+            color: #7aa7ff;
+            top: 72%;
+            left: 35%;
+            animation-duration: 34s;
+            animation-delay: -14s;
+            transform-origin: 12vw 17vh;
+            box-shadow: 2vmin 0 1.1077103255650604vmin currentColor;
+        }
+        .background span:nth-child(25) {
+            color: #00f549;
+            top: 4%;
+            left: 51%;
+            animation-duration: 52s;
+            animation-delay: -44s;
+            transform-origin: -23vw -10vh;
+            box-shadow: -2vmin 0 0.505427009198081vmin currentColor;
+        }
+        .background span:nth-child(26) {
+            color: #7aa7ff;
+            top: 90%;
+            left: 80%;
+            animation-duration: 50s;
+            animation-delay: -16s;
+            transform-origin: -17vw 2vh;
+            box-shadow: -2vmin 0 1.0769721863974981vmin currentColor;
+        }
+        .background span:nth-child(27) {
+            color: #00f549;
+            top: 3%;
+            left: 73%;
+            animation-duration: 19s;
+            animation-delay: -4s;
+            transform-origin: 21vw -11vh;
+            box-shadow: -2vmin 0 0.47284741128601393vmin currentColor;
+        }
+        .background span:nth-child(28) {
+            color: #000000;
+            top: 38%;
+            left: 83%;
+            animation-duration: 8s;
+            animation-delay: -41s;
+            transform-origin: 5vw 18vh;
+            box-shadow: -2vmin 0 0.9649075242373397vmin currentColor;
+        }
+        .background span:nth-child(29) {
+            color: #000000;
+            top: 64%;
+            left: 58%;
+            animation-duration: 16s;
+            animation-delay: -26s;
+            transform-origin: -6vw 5vh;
+            box-shadow: -2vmin 0 0.7981093254705462vmin currentColor;
+        }
+        .background span:nth-child(30) {
+            color: #7aa7ff;
+            top: 52%;
+            left: 46%;
+            animation-duration: 21s;
+            animation-delay: -24s;
+            transform-origin: 1vw 2vh;
+            box-shadow: -2vmin 0 0.3141217328553394vmin currentColor;
+        }
+        .background span:nth-child(31) {
+            color: #000000;
+            top: 77%;
+            left: 89%;
+            animation-duration: 33s;
+            animation-delay: -35s;
+            transform-origin: 11vw 6vh;
+            box-shadow: 2vmin 0 1.0438036772431336vmin currentColor;
+        }
+        .background span:nth-child(32) {
+            color: #00f549;
+            top: 59%;
+            left: 39%;
+            animation-duration: 16s;
+            animation-delay: -10s;
+            transform-origin: 1vw 14vh;
+            box-shadow: 2vmin 0 0.46072774712493714vmin currentColor;
+        }
+        .background span:nth-child(33) {
+            color: #00ebe7;
+            top: 23%;
+            left: 62%;
+            animation-duration: 45s;
+            animation-delay: -48s;
+            transform-origin: -6vw 6vh;
+            box-shadow: -2vmin 0 0.6648780908845195vmin currentColor;
+        }
+        .background span:nth-child(34) {
+            color: #00ebe7;
+            top: 84%;
+            left: 56%;
+            animation-duration: 21s;
+            animation-delay: -17s;
+            transform-origin: 20vw -16vh;
+            box-shadow: 2vmin 0 1.0402213342311704vmin currentColor;
+        }
+        .background span:nth-child(35) {
+            color: #00ebe7;
+            top: 15%;
+            left: 98%;
+            animation-duration: 9s;
+            animation-delay: -19s;
+            transform-origin: 2vw 7vh;
+            box-shadow: -2vmin 0 0.406958700212956vmin currentColor;
+        }
+        .background span:nth-child(36) {
+            color: #00ebe7;
+            top: 34%;
+            left: 59%;
+            animation-duration: 10s;
+            animation-delay: -22s;
+            transform-origin: 22vw -9vh;
+            box-shadow: 2vmin 0 0.6030274681383689vmin currentColor;
+        }
+        .background span:nth-child(37) {
+            color: #00f549;
+            top: 20%;
+            left: 45%;
+            animation-duration: 40s;
+            animation-delay: -23s;
+            transform-origin: -9vw 19vh;
+            box-shadow: -2vmin 0 0.36682231001970833vmin currentColor;
+        }
+        .background span:nth-child(38) {
+            color: #00ebe7;
+            top: 53%;
+            left: 73%;
+            animation-duration: 19s;
+            animation-delay: -7s;
+            transform-origin: 24vw 17vh;
+            box-shadow: 2vmin 0 0.40378082111847324vmin currentColor;
+        }
+        .background span:nth-child(39) {
+            color: #00f549;
+            top: 17%;
+            left: 86%;
+            animation-duration: 17s;
+            animation-delay: -30s;
+            transform-origin: -7vw 14vh;
+            box-shadow: 2vmin 0 0.44497795556119857vmin currentColor;
+        }
+        .background span:nth-child(40) {
+            color: #00ebe7;
+            top: 6%;
+            left: 21%;
+            animation-duration: 19s;
+            animation-delay: -31s;
+            transform-origin: 22vw -23vh;
+            box-shadow: -2vmin 0 0.6478527193900299vmin currentColor;
+        }
+        .background span:nth-child(41) {
+            color: #00ebe7;
+            top: 21%;
+            left: 13%;
+            animation-duration: 18s;
+            animation-delay: -22s;
+            transform-origin: -7vw 12vh;
+            box-shadow: 2vmin 0 0.8795306997448478vmin currentColor;
+        }
+        .background span:nth-child(42) {
+            color: #00f549;
+            top: 49%;
+            left: 10%;
+            animation-duration: 37s;
+            animation-delay: -36s;
+            transform-origin: -1vw 17vh;
+            box-shadow: -2vmin 0 0.3685407295964156vmin currentColor;
+        }
+        .background span:nth-child(43) {
+            color: #00ebe7;
+            top: 79%;
+            left: 24%;
+            animation-duration: 47s;
+            animation-delay: -31s;
+            transform-origin: 0vw -11vh;
+            box-shadow: -2vmin 0 0.9367005389369099vmin currentColor;
+        }
+        .background span:nth-child(44) {
+            color: #00f549;
+            top: 33%;
+            left: 10%;
+            animation-duration: 15s;
+            animation-delay: -12s;
+            transform-origin: -20vw 15vh;
+            box-shadow: -2vmin 0 1.1737995427314425vmin currentColor;
+        }
+        .background span:nth-child(45) {
+            color: #000000;
+            top: 8%;
+            left: 99%;
+            animation-duration: 19s;
+            animation-delay: -37s;
+            transform-origin: 8vw 23vh;
+            box-shadow: 2vmin 0 1.0397252560671828vmin currentColor;
+        }
+        .background span:nth-child(46) {
+            color: #00f549;
+            top: 100%;
+            left: 3%;
+            animation-duration: 14s;
+            animation-delay: -15s;
+            transform-origin: 13vw -2vh;
+            box-shadow: 2vmin 0 0.3500208650850698vmin currentColor;
+        }
+        .background span:nth-child(47) {
+            color: #7aa7ff;
+            top: 74%;
+            left: 77%;
+            animation-duration: 30s;
+            animation-delay: -20s;
+            transform-origin: -18vw 16vh;
+            box-shadow: -2vmin 0 0.8503929716721046vmin currentColor;
+        }
+        .background span:nth-child(48) {
+            color: #00f549;
+            top: 71%;
+            left: 66%;
+            animation-duration: 50s;
+            animation-delay: -41s;
+            transform-origin: -24vw 5vh;
+            box-shadow: 2vmin 0 1.0048138330489642vmin currentColor;
+        }
+        .background span:nth-child(49) {
+            color: #7aa7ff;
+            top: 24%;
+            left: 13%;
+            animation-duration: 24s;
+            animation-delay: -26s;
+            transform-origin: -23vw 24vh;
+            box-shadow: -2vmin 0 1.1934905057145728vmin currentColor;
+        }
+
+    </style>
+
+</head>
+<header>
+
+    <ul class="nav nav-tabs">
+        <li>
+            <h1 style="color: white;font-family: 'Italianno', cursive;font-size: 40px;margin-top: 8px"> &nbsp;&nbsp;තොග කඩේ</h1>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link position-relative"  aria-current="page" id="homeNav" style="cursor: pointer;top: 10px">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link position-relative" aria-current="page" id="customerNav" style="cursor: pointer;top: 10px">Customer</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link position-relative" id="itemNav" style="cursor: pointer;top: 10px">Items</a>
+        </li>
+        <li class="nav-item">
+            <a id="orderNav" class="nav-link position-relative" style="cursor: pointer;top: 10px">Orders</a>
+        </li>
+    </ul>
+</header>
+
+<body style="background: #2b3035;width: 100%;height: 130vh;">
+
+<!--homeForm-->
+<section id="homeeeeee"  style="width: 100%; height:99vh;position:absolute; top:10vh;">
+    <section class="container-fluid justify-content-center">
+        <section class="row justify-content-center">
+            <section class="col-10">
+                <div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel" style="height: 705px; border:2px solid #6edff6; border-radius: 20px">
+                    <div class="carousel-indicators">
+                        <button style="color: black" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active bg-info" aria-current="true" aria-label="Slide 1"></button>
+                        <button style="color: black" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" class="bg-info" aria-label="Slide 2"></button>
+                        <button style="color: black" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" class="bg-info" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner" style="height: 700px;border-radius: 20px">
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img src="assets/images/interior-large-distribution-warehouse-with-shelves-stacked-with-palettes-goods-ready-market.jpg"class="d-block w-100" style="height: 700px;border-radius: 20px" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 style="color: black">CUSTOMER</h5>
+                                <p style="color: black">Can Add Customer for this Thoga Kade.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img src="assets/images/warehouse-storage-interior-with-shelves-loaded-with-goods.jpg"class="d-block w-100" style="height: 700px;border-radius: 20px" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 style="color: black">ITEM</h5>
+                                <p style="color: black">Can Add Item for this Thoga Kade.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/images/african-american-worker-communicating-with-her-female-colleague-while-preparing-shipment-industrial-warehouse.jpg"class="d-block w-100" style="height: 700px;border-radius: 20px"alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 style="color: white;">ORDER</h5>
+                                <p style="color: white">Can Add Orders for this thoga kade.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                        <span style="color: #6edff6" class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span style="color: #6edff6" class="visually-hidden bg-info">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+            </section>
+        </section>
+    </section>
+</section>
+<!--customerForm-->
+
+<section id="customerForm" style="position:absolute; top:10vh;width: 100%; height:99vh;display: none">
+    <section class="container-fluid justify-content-center">
+        <section class="row justify-content-center">
+            <section class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 mt-3" style="border: 1px solid #3dd5f3; border-radius: 12px;-webkit-box-shadow: inset 10px 13px 110px -39px rgba(61,213,243,1);
+-moz-box-shadow: inset 10px 13px 110px -39px rgba(61,213,243,1);
+box-shadow: inset 10px 13px 110px -39px rgba(61,213,243,1);">
+
+
+                <div class="container-fluid">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2 mb-5 mt-5" id="cSearchTxt" type="search" placeholder="Customer ID" style="background: transparent;border: 1px solid #3dd5f3; color: #3dd5f3" aria-label="Search">
+                        <button class="btn btn-outline-success mt-5 mb-5" id="cSearchBtn" type="button">Search</button>
+                    </form>
+                </div>
+
+                <!--input bars-->
+
+                <form id="customerTxtForm">
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="cId">Customer ID :</span>
+                    <input type="text" class="form-control" placeholder="Customer ID" id="cIdTxt" aria-label="Username" aria-describedby="cId">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="text" id="cNameTxt" class="form-control" placeholder="Name" aria-label="Recipient's username" aria-describedby="cName">
+                    <span class="input-group-text" id="cName">: Customer Name</span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="cAddress">Customer Address :</span>
+                    <input type="text"  id="cAddressTxt" class="form-control" placeholder="Address" aria-label="Username" aria-describedby="cAddress">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="text" id="cSalaryText" class="form-control" placeholder="Salary" aria-label="Recipient's username" aria-describedby="cSalary">
+                    <span class="input-group-text" id="cSalary">: Customer Salary</span>
+                </div>
+                </form>
+
+                <div class="btn-group mt-5 mb-5" role="group" aria-label="Basic outlined example">
+                    <button id="cSavebtn" type="submit" class="btn btn-outline-primary">Save</button>
+                    <button id="cUpdateBtn" type="button" class="btn btn-outline-primary">Update</button>
+                    <button id="cDeleteBtn" type="button" class="btn btn-outline-primary">Delete</button>
+                    <button id="clearBtn" type="button" class="btn btn-outline-primary">Clear All</button>
+                </div>
+
+
+                <!--table-->
+
+                <table class="table col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Customer ID</th>
+                        <th scope="col">Customer Address</th>
+                        <th scope="col">Salary</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tblCustomer">
+
+                    </tbody>
+                </table>
+
+            </section>
+
+        </section>
+
+    </section>
+
+</section>
+
+<!--itemForm-->
+<section id="itemForm" style="width: 100%; height:99vh;position:absolute; top:10vh;" >
+
+    <section class="container-fluid justify-content-center">
+        <section class="row justify-content-center">
+            <section class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 mt-3" style="border: 1px solid #3dd5f3; border-radius: 12px;-webkit-box-shadow: inset 10px 13px 110px -39px rgba(61,213,243,1);
+-moz-box-shadow: inset 10px 13px 110px -39px rgba(61,213,243,1);
+box-shadow: inset 10px 13px 110px -39px rgba(61,213,243,1);">
+
+
+                <div class="container-fluid">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2 mb-5 mt-5" id="iSearchTxt" type="search"  style="background: transparent;border: 1px solid #3dd5f3; color: white;" placeholder="Item Code" aria-label="Search">
+                        <button class="btn btn-outline-success mt-5 mb-5" id="iSearchBtn" type="button">Search</button>
+                    </form>
+                </div>
+
+                <!--input bars-->
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="Icode">Item Code :</span>
+                    <input class="form-control" id="iID" placeholder="Item Code" aria-label="Username" aria-describedby="Icode">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="text" id="IIName" class="form-control" id="iName" placeholder="Item Name" aria-label="Recipient's username" aria-describedby="IIName">
+                    <span class="input-group-text" >: Item Name</span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="IPrice">Item Price :</span>
+                    <input type="text" class="form-control" placeholder="Price"  id="i-Price" aria-label="Username" aria-describedby="IPrice">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="Iqty" id="i-qty" placeholder="Quantity" aria-label="Recipient's username" aria-describedby="Iqty">
+                    <span class="input-group-text" >: Item Quantity</span>
+                </div>
+
+
+                <!--btn groups-->
+
+
+                <div class="btn-group mt-5 mb-5" role="group" aria-label="Basic outlined example">
+                    <button id="iSaveBtn" type="button" class="btn btn-outline-primary">Save</button>
+                    <button id="iUpdateBtn" type="button" class="btn btn-outline-primary">Update</button>
+                    <button id="iDeleteBtn" type="button" class="btn btn-outline-primary">Delete</button>
+                    <button id="iclearBtn" type="button" class="btn btn-outline-primary">Clear All</button>
+
+                </div>
+
+
+                <!--table-->
+
+                <table class="table col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Item ID</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Item Price</th>
+                        <th scope="col">Item Qty</th>
+                    </tr>
+                    </thead>
+                    <tbody id="itemTbl">
+                    </tbody>
+                </table>
+
+
+            </section>
+
+        </section>
+
+    </section>
+
+</section>
+
+
+<!--orderForm-->
+<section id="orderForm" style="width: 100%; height:120vh;position:absolute; top:10vh;">
+
+        <div class="container-fluid mt-4" >
+            <div class="row p-2">
+
+                <div class="col-12 col-md-3 border-end border-black h-75 mt-2 bg-body-secondary rounded-4"style="margin-right: 40px;height: 800px">
+                    <div class="row" style="height: 5vh;background: #3dd5f3">
+                        <h1 class="modal-title fs-6 text-center text-white" id="exampleModalLabel">Invoice Details</h1>
+                    </div>
+                    <form class="ml" style="height: 45vh" >
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">Order ID</label>
+                                    <input type="email" id="oId" class="form-control input-sm" placeholder="ID">
+                                </div>
+
+
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">Date</label>
+                                    <input type="date" id="date" class="form-control" placeholder="Name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">Customer ID</label>
+                                    <select class="form-select"  id="selectCustomerId">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">Customer Name</label>
+                                    <input type="email" id="oCName" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">Customer Address</label>
+                                    <input type="email" id="oCAddress" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">Salary</label>
+                                    <input type="email" id="oCSalary" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">Customer ID</label>
+                                    <input type="email" id="CustomerIDORderForm" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+
+
+
+
+
+                <div class="col-12 col-md-5 h-75 border-end border-black mt-2 bg-body-secondary rounded-4"style="margin-right: 40px">
+                    <div class="row" style="height: 5vh;background: #3dd5f3">
+                        <h1 class="modal-title fs-6 text-center text-white" id="">Item Select</h1>
+                    </div>
+                    <form style="height: 45vh">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">Item ID</label>
+                                    <select id="oSelectItem" class="form-select">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">Item ID</label>
+                                    <input type="email" id="itemID" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">Unit Price</label>
+                                    <input type="email" id="iOPrice" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">QTY ON Hand</label>
+                                    <input type="email" id="iOQty" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">Order QTY</label>
+                                    <input type="number" id="oqty" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3">
+                                <label class="col-form-label col-form-label-sm">Item Name</label>
+                                <input type="email" id="ItemNameOrder" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="row d-flex justify-content-end">
+                            <div class="col-3">
+                                <button type="button" id="addToItemBtn" class="btn btn-outline-primary">Add To Item</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+
+
+
+                <div class="col-12 col-md-3 h-75 mt-2 bg-body-secondary rounded-4">
+                    <div class="row" style="height: 5vh;background: #3dd5f3">
+                        <h1 class="modal-title fs-6 text-center text-white" id="exampleModalLabel@">Summery</h1>
+                    </div>
+                    <form style="height: 45vh">
+                        <div class="row">
+                            <label class="text-bg-danger d-flex"><h2>Total LKR:<h2 id="totalTxt" class="text-black">0</h2></h2></label>
+                            <label class="text-bg-info d-flex"><h3>SuBTotal LKR:<h3 id="OrderSubTotal" class="text-black">0</h3></h3></label>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">Cash</label>
+                                    <input type="email" id="orderCashTxt" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="col-form-label col-form-label-sm">Discount</label>
+                                    <input type="number" id="orderDiscountTxt" class="form-control" placeholder="%">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3">
+                                <label class="col-form-label col-form-label-sm">Balance</label>
+                                <input type="email" id="orderBalanceTxt" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="row d-flex justify-content-end">
+                            <div class="col-3">
+                                <button type="button" id="oSaveBtn" class="btn btn-outline-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row d-flex overflow-auto h-auto col-lg-11 col-12 m-auto z-0 mt-5">
+            <table class="table table-striped table-hover border" id="tbloCustomer">
+                <thead class="table-bordered sticky-top overflow-auto table-info">
+                <tr>
+                    <th scope="col">Item Code</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">QTY</th>
+                    <th scope="col">Total</th>
+                </tr>
+                </thead>
+                <tbody id="tblOrderBody">
+                </tbody>
+            </table>
+        </div>
+</section>
+
+<div class="background">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<script src="assets/bootstrap/js/bootstrap.js"></script>
+<script src="assets/bootstrap/js/jquery-3.7.1.min.js"></script>
+<script>
+    var customerFormVar =document.querySelector("#customerForm");
+    var itemFormVar =document.querySelector("#itemForm");
+    var orderrFormVar =document.querySelector("#orderForm");
+    var homeFormVar = document.querySelector("#homeeeeee");
+
+    homeFormVar.style.display='inline'
+    customerFormVar.style.display='none';
+    itemFormVar.style.display='none';
+    orderrFormVar.style.display='none';
+</script>
+<script src="models/Customer.js"></script>
+<script type="module" src="controllers/CustomerController.js"></script>
+<script type="module" src="controllers/validations/CustomerValidation.js"></script>
+<script type="module" src="controllers/ItemController.js"></script>
+<script type="module" src="controllers/validations/ItemValidation.js"></script>
+<script type="module" src="controllers/PurchaseOrderController.js"></script>
+<script type="module" src="controllers/validations/OrderValidation.js"></script>
+<script src="db/db.js"></script>
+</body>
+</html>
