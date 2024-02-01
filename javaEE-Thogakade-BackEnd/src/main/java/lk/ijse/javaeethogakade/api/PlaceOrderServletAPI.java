@@ -1,4 +1,4 @@
-package lk.ijse.javaeethogakade.servlet;
+package lk.ijse.javaeethogakade.api;
 
 
 import jakarta.servlet.ServletException;
@@ -6,11 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lk.ijse.javaeethogakade.db.DBConnection;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 
 @WebServlet(name = "PlaceOrderServletAPI", urlPatterns = "/placeOrder/*")
 public class PlaceOrderServletAPI extends HttpServlet {

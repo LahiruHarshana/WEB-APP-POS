@@ -1,4 +1,4 @@
-package lk.ijse.javaeethogakade.servlet;
+package lk.ijse.javaeethogakade.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.json.Json;
