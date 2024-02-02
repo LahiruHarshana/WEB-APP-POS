@@ -121,6 +121,7 @@ public class ItemServletAPI extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.addHeader("Access-Control-Allow-Origin", "*");
         try {
             BufferedReader reader = req.getReader();
             StringBuilder jsonInput = new StringBuilder();
