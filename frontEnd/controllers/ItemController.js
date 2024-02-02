@@ -28,6 +28,7 @@ $("#itemNav").click(function () {
     customerFormVar.style.display = 'none';
     itemFormVar.style.display = 'inline';
     orderrFormVar.style.display = 'none';
+    updateItemTable();
 });
 
 $("#orderNav").click(function () {
