@@ -165,16 +165,25 @@ public class ItemServletAPI extends HttpServlet {
 
             if (result) {
                 resp.setStatus(HttpServletResponse.SC_OK);
-                jsonResponse.add("message", "Item has been deleted successfully");
+                jsonResponse.add("message", "Item has been updated successfully");
             } else {
                 resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
-                jsonResponse.add("error", "Item not found or could not be deleted");
+                jsonResponse.add("error", "Item not found or could not be updated");
             }
 
+            // Send the JSON response back to the client
+            resp.getWriter().println(jsonResponse.build().toString());
+
         } catch (SQLException | ClassNotFoundException e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            JsonObjectBuilder jsonResponse = Json.createObjectBuilder()
+                    .add("error", "Internal server error");
+            // Send the JSON response back to the client
+            resp.getWriter().println(jsonResponse.build().toString());
             throw new RuntimeException(e);
         }
     }
+
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Access-Control-Allow-Origin", "*");
