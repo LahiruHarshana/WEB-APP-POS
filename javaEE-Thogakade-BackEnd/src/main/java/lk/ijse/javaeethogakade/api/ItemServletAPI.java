@@ -135,7 +135,6 @@ public class ItemServletAPI extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             JsonObjectBuilder jsonResponse = Json.createObjectBuilder()
                     .add("error", "Internal server error");
-            // Send the JSON response back to the client
             resp.getWriter().println(jsonResponse.build().toString());
             throw new RuntimeException(e);
         }
