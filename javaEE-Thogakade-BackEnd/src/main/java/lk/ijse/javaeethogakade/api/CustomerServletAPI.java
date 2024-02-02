@@ -59,7 +59,9 @@ public class CustomerServletAPI extends HttpServlet {
 
     private void getAll(String customerId, HttpServletResponse response) {
         response.addHeader("Access-Control-Allow-Origin", "http://localhost:63342");
-        response.setContentType("application/json");
+        resp.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        resp.addHeader("Access-Control-Allow-Headers", "Content-Type");
+        resp.addHeader("Access-Control-Max-Age", "3600");
         try {
             String sql = "SELECT * FROM customer WHERE cusID=?";
             ResultSet rst = SQLUtil.execute(sql, customerId);
