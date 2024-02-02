@@ -58,18 +58,12 @@ public class CustomerServletAPI extends HttpServlet {
 
 
     private void getAll(String customerId, HttpServletResponse response) {
-        response.addHeader("Access-Control-Allow-Origin", "http://localhost:63342");
-        response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        response.addHeader("Access-Control-Allow-Headers", "Content-Type");
-        response.addHeader("Access-Control-Max-Age", "3600");
         response.setContentType("application/json");
         try {
             String sql = "SELECT * FROM customer WHERE cusID=?";
             ResultSet rst = SQLUtil.execute(sql, customerId);
 
             PrintWriter writer = response.getWriter();
-            response.setContentType("application/json");
-            response.addHeader("Access-Control-Allow-Origin", "*");
 
             JsonArrayBuilder allCustomer = Json.createArrayBuilder();
 
@@ -93,6 +87,7 @@ public class CustomerServletAPI extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
