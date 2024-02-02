@@ -127,7 +127,6 @@ public class ItemServletAPI extends HttpServlet {
                 jsonResponse.add("error", "Failed to insert item");
             }
 
-            // Send the JSON response back to the client
             resp.getWriter().println(jsonResponse.build().toString());
 
         } catch (SQLException | ClassNotFoundException e) {
