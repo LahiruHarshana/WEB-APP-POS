@@ -117,16 +117,30 @@ public class ItemServletAPI extends HttpServlet {
             String sql = "INSERT INTO Items VALUES (?,?,?,?)";
             Boolean result = SQLUtil.execute(sql, itemDTO.getCode(), itemDTO.getDescription(), itemDTO.getUnitPrice(), itemDTO.getQtyOnHand());
 
+            JsonObjectBuilder jsonResponse = Json.createObjectBuilder();
+
             if (result) {
-                resp.getWriter().println("Item has been saved successfully");
+                resp.setStatus(HttpServletResponse.SC_OK);
+                jsonResponse.add("message", "Item has been inserted successfully");
             } else {
-                resp.getWriter().println("Failed to save item");
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                jsonResponse.add("error", "Failed to insert item");
             }
 
+            // Send the JSON response back to the client
+            resp.getWriter().println(jsonResponse.build().toString());
+
         } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            JsonObjectBuilder jsonResponse = Json.createObjectBuilder()
+                    .add("error", "Internal server error");
+            // Send the JSON response back to the client
+            resp.getWriter().println(jsonResponse.build().toString());
             throw new RuntimeException(e);
         }
     }
+
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -147,10 +161,14 @@ public class ItemServletAPI extends HttpServlet {
             String sql = "UPDATE Items SET ItemName=?, ItemPrice=?, ItemQuantity=? WHERE ItemCode=?";
             Boolean result = SQLUtil.execute(sql, itemDTO.getDescription(), itemDTO.getUnitPrice(), itemDTO.getQtyOnHand(), itemDTO.getCode());
 
+            JsonObjectBuilder jsonResponse = Json.createObjectBuilder();
+
             if (result) {
-                resp.getWriter().println("Item has been updated successfully");
+                resp.setStatus(HttpServletResponse.SC_OK);
+                jsonResponse.add("message", "Item has been deleted successfully");
             } else {
-                resp.getWriter().println("Failed to update item");
+                resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                jsonResponse.add("error", "Item not found or could not be deleted");
             }
 
         } catch (SQLException | ClassNotFoundException e) {

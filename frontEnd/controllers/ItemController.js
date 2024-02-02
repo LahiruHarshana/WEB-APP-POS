@@ -135,8 +135,10 @@ function saveItem() {
             alert("Item has been saved successfully");
         },
         error: function (data) {
+            console.error(data);
             alert("Failed to save the item");
         },
+
     });
 }
 
