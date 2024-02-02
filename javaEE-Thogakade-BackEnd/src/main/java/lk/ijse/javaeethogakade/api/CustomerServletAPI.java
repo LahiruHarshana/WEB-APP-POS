@@ -111,7 +111,7 @@ public class CustomerServletAPI extends HttpServlet {
             ResultSet rst = SQLUtil.execute(sql);
 
             PrintWriter writer = response.getWriter();
-            response.setContentType("application/json"); // Set content type explicitly
+            response.setContentType("application/json");
 
 
             JsonArrayBuilder allCustomer = Json.createArrayBuilder();
