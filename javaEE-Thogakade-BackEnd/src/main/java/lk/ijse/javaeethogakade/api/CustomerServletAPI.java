@@ -98,8 +98,6 @@ public class CustomerServletAPI extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.addHeader("Access-Control-Allow-Origin", "http://localhost:63342");
-        response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-        response.addHeader("Access-Control-Allow-Headers", "Content-Type");
         response.setContentType("application/json");
         String customerId = request.getParameter("customerId");
         if (customerId != null) {
