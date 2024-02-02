@@ -134,6 +134,8 @@ public class CustomerServletAPI extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.setContentType("text/plain");
         try {
             BufferedReader reader = request.getReader();
             StringBuilder jsonInput = new StringBuilder();
@@ -161,6 +163,8 @@ public class CustomerServletAPI extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.setContentType("text/plain");
         try {
             String customerId = request.getPathInfo().substring(1);
             String sql = "DELETE FROM customer WHERE cusID=?";
