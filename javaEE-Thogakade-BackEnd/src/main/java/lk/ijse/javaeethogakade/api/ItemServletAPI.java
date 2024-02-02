@@ -150,6 +150,8 @@ public class ItemServletAPI extends HttpServlet {
     }
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.addHeader("Access-Control-Allow-Origin", "*");
+        resp.addHeader("Content-Type", "application/json");
         try {
             String pathInfo = req.getPathInfo();
             if (pathInfo != null && pathInfo.length() > 1) {
@@ -158,8 +160,7 @@ public class ItemServletAPI extends HttpServlet {
                 String sql = "DELETE FROM Items WHERE ItemCode=?";
                 Boolean result = SQLUtil.execute(sql, code);
 
-                resp.addHeader("Content-Type", "application/json");
-                resp.addHeader("Access-Control-Allow-Origin", "*");
+
 
                 JsonObjectBuilder jsonResponse = Json.createObjectBuilder();
 
