@@ -160,8 +160,6 @@ public class ItemServletAPI extends HttpServlet {
                 String sql = "DELETE FROM Items WHERE ItemCode=?";
                 Boolean result = SQLUtil.execute(sql, code);
 
-
-
                 JsonObjectBuilder jsonResponse = Json.createObjectBuilder();
 
                 if (result) {
