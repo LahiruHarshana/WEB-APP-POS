@@ -148,8 +148,6 @@ $("#selectCustomerId").change(function () {
         var itemID = $("#itemID").val();
         var itemName = $("#ItemNameOrder").val();
 
-
-
         updateOrderTable();
         loadTotal();
     });
