@@ -24,6 +24,8 @@ public class ItemServletAPI extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String itemId = req.getParameter("itemId");
+        resp.addHeader("Access-Control-Allow-Origin", "*");
+        resp.addHeader("Content-Type", "application/json");
 
         if(itemId != null){
             try {
@@ -31,8 +33,7 @@ public class ItemServletAPI extends HttpServlet {
                 ResultSet rst = SQLUtil.execute(sql, itemId);
 
                 PrintWriter writer = resp.getWriter();
-                resp.addHeader("Content-Type", "application/json");
-                resp.addHeader("Access-Control-Allow-Origin", "*");
+
 
 
                 JsonArrayBuilder allItems = Json.createArrayBuilder();
