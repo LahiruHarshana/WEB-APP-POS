@@ -171,7 +171,6 @@ public class ItemServletAPI extends HttpServlet {
                 jsonResponse.add("error", "Item not found or could not be updated");
             }
 
-            // Send the JSON response back to the client
             resp.getWriter().println(jsonResponse.build().toString());
 
         } catch (SQLException | ClassNotFoundException e) {
