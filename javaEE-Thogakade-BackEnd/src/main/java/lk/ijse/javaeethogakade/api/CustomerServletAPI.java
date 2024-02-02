@@ -62,6 +62,7 @@ public class CustomerServletAPI extends HttpServlet {
         response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         response.addHeader("Access-Control-Allow-Headers", "Content-Type");
         response.addHeader("Access-Control-Max-Age", "3600");
+        response.setContentType("application/json");
         try {
             String sql = "SELECT * FROM customer WHERE cusID=?";
             ResultSet rst = SQLUtil.execute(sql, customerId);
@@ -99,6 +100,8 @@ public class CustomerServletAPI extends HttpServlet {
         response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         response.addHeader("Access-Control-Allow-Headers", "Content-Type");
         response.addHeader("Access-Control-Max-Age", "3600");
+        response.setContentType("application/json");
+
         String customerId = request.getParameter("customerId");
         if (customerId != null) {
             getAll(customerId, response);
