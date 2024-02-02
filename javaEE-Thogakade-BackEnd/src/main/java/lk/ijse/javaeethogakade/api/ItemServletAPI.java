@@ -65,8 +65,7 @@ public class ItemServletAPI extends HttpServlet {
             ResultSet rst = SQLUtil.execute(sql);
 
             PrintWriter writer = resp.getWriter();
-            resp.addHeader("Content-Type", "application/json");
-            resp.addHeader("Access-Control-Allow-Origin", "*");
+
 
             JsonArrayBuilder allItems = Json.createArrayBuilder();
 
@@ -92,6 +91,8 @@ public class ItemServletAPI extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.addHeader("Access-Control-Allow-Origin", "*");
+        resp.addHeader("Content-Type", "application/json");
         try {
             BufferedReader reader = req.getReader();
             StringBuilder jsonInput = new StringBuilder();
