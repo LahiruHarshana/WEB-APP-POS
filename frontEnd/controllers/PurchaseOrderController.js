@@ -184,7 +184,7 @@ $("#selectCustomerId").change(function () {
             data: {
                 orderID: $("#oId").val(),
                 orderDate: $("#date").val(),
-                customerId: $("#CustomerIDORderForm").val(),
+                cusID: $("#CustomerIDORderForm").val(),
                 orderItems: orderDetails
             },
             success: function (resp) {
