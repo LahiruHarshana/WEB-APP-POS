@@ -60,7 +60,7 @@ public class PlaceOrderServletAPI extends HttpServlet {
                     Boolean updateQuantityResult = SQLUtil.execute(sqlUpdateQuantity, orderDetail.getQuantity(), orderDetail.getItemCode());
 
                     if (!updateQuantityResult) {
-                        connection.rollback(); // Rollback transaction if quantity update fails
+                        connection.rollback();
                         resp.getWriter().println("Failed to update item quantity");
                         return;
                     }
