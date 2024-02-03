@@ -43,9 +43,6 @@ public class ItemServletAPI extends HttpServlet {
                 ResultSet rst = SQLUtil.execute(sql, itemId);
 
                 PrintWriter writer = resp.getWriter();
-
-
-
                 JsonArrayBuilder allItems = Json.createArrayBuilder();
 
                 while (rst.next()) {
