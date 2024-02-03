@@ -155,10 +155,9 @@ $("#selectCustomerId").change(function () {
             Qty: qty,
             total: total
         });
-
-
         updateOrderTable();
         loadTotal();
+
     });
     function loadTotal() {
         var total = 0;
@@ -188,7 +187,6 @@ $("#selectCustomerId").change(function () {
              $("#totalTxt").text("");
             $("#selectCustomerId").children().remove();
             $("#oSelectItem").children().remove();
-
 
     });
 
