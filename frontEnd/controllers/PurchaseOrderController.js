@@ -119,15 +119,6 @@ $("#selectCustomerId").change(function () {
                     $("#iOPrice").val(item.unitPrice);
                     $("#iOQty").val(item.qtyOnHand);
 
-                    Orders.push({
-                        itemID: item.code,
-                        itemName: item.description,
-                        unitPrice: item.unitPrice,
-                        Qty: 0,
-                        total: 0
-                    });
-
-
                     validated1();
                     validated2();
                     validated3();
@@ -161,12 +152,7 @@ $("#selectCustomerId").change(function () {
         loadTotal();
     });
     function loadTotal() {
-        var fullTotal=0;
-        for (let i = 0; i < Orders.length; i++) {
-            fullTotal+=parseInt(Orders[i].total);
-        }
-        $("#totalTxt").text(fullTotal);
-        $("#OrderSubTotal").text(fullTotal);
+
     }
 
     $("#oSaveBtn").click(function () {
