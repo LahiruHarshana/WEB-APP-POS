@@ -210,7 +210,7 @@ $("#selectCustomerId").change(function () {
             $("#orderDiscountTxt").val("");
             $("#tblOrderBody").empty();
             $("#orderBalanceTxt").val("");
-             $("#OrderSubTotal").text("");
+            $("#OrderSubTotal").text("");
              $("#totalTxt").text("");
 
     });
