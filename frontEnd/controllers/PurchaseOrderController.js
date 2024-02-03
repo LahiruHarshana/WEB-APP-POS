@@ -147,8 +147,6 @@ $("#selectCustomerId").change(function () {
         var total = price * qty;
         var itemID = $("#itemID").val();
         var itemName = $("#ItemNameOrder").val();
-        var orderID = $("#oId");
-
         Orders.push({
             itemID: itemID,
             itemName: itemName,
@@ -159,7 +157,7 @@ $("#selectCustomerId").change(function () {
 
         orderDetails.push({
             itemCode: itemID,
-            orderID: orderID,
+            orderID: $("#oId").val(),
             quantity: qty,
             itemPrice: price
         });
@@ -225,12 +223,11 @@ function updateOrderTable() {
 
 function saveOrder(){
     var order = {
-        orderID: $("#oId").val(),
-        orderDate: $("#date").val(),
-        cusID: $("#CustomerIDORderForm").val(),
-        orderItems: orderDetails
+        id: $("#oId").val(),
+        date: $("#oDate").val(),
+        customerId: $("#CustomerIDORderForm").val(),
+        orderDetails: orderDetails
     };
-
     $.ajax({
         method: "POST",
         url: "http://localhost:8080/check/order",
@@ -244,6 +241,6 @@ function saveOrder(){
         error: function (data) {
             console.error(data);
             alert("Failed to save the order");
-        }
+        },
     });
 }

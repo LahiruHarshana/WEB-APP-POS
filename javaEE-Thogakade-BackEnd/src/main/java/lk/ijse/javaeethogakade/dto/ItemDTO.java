@@ -5,7 +5,6 @@ public class ItemDTO {
     private String description;
     private double unitPrice;
     private int qtyOnHand;
-
     public ItemDTO() {
 
 

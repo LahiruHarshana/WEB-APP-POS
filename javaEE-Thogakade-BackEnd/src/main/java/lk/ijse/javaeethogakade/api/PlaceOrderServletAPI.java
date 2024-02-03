@@ -33,6 +33,7 @@ public class PlaceOrderServletAPI extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("PlaceOrderServletAPI doPost");
         resp.addHeader("Access-Control-Allow-Origin", "*");
         resp.setContentType("text/plain");
 
@@ -41,19 +42,25 @@ public class PlaceOrderServletAPI extends HttpServlet {
             connection = DBConnection.getDbConnection().getConnection();
             connection.setAutoCommit(false);
 
+            System.out.println("PlaceOrderServletAPI doPost");
+
             BufferedReader reader = req.getReader();
             StringBuilder jsonInput = new StringBuilder();
 
             String line;
             while ((line = reader.readLine()) != null) {
                 jsonInput.append(line);
+                System.out.println("PlaceOrderServletAPI doPost");
             }
             ObjectMapper objectMapper = new ObjectMapper();
             OrderDto orderDto = objectMapper.readValue(jsonInput.toString(), OrderDto.class);
 
+            System.out.println(orderDto);
+
             // Save Order
             String sqlOrder = "INSERT INTO orders (orderID, orderDate, cusID) VALUES (?, ?, ?)";
             Boolean orderResult = SQLUtil.execute( sqlOrder, orderDto.getOrderID(), orderDto.getOrderDate(), orderDto.getCusID());
+            System.out.println(orderResult);
 
             if (orderResult) {
                 // Save Order Details
@@ -62,6 +69,7 @@ public class PlaceOrderServletAPI extends HttpServlet {
                     Boolean orderDetailResult = SQLUtil.execute(sqlOrderDetail, orderDetail.getItemCode(), orderDto.getOrderID(), orderDetail.getQuantity(), orderDetail.getItemPrice());
 
                     if (!orderDetailResult) {
+                        System.out.println("Failed to save order details");
                         connection.rollback();
                         resp.getWriter().println("Failed to save order details");
                         return;
