@@ -197,8 +197,8 @@ $("#selectCustomerId").change(function () {
         });
 
             $("#oId").val("");
-           $("#date").val("");
-             $("#CustomerIDORderForm").val("");
+            $("#date").val("");
+            $("#CustomerIDORderForm").val("");
             $("#itemID").val("");
             $("#oCSalary").val("");
             $("#ItemNameOrder").val("");
