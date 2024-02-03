@@ -191,13 +191,17 @@ $("#selectCustomerId").change(function () {
 
 
     $("#orderCashTxt").keyup(function (e) {
-        var total =parseInt($("#OrderSubTotal").text());
-        var cash =parseInt($("#orderCashTxt").val());
-        var balance =  cash-total;
+        var total = parseInt($("#OrderSubTotal").text());
+        var cash = parseInt($("#orderCashTxt").val());
+        var balance = cash - total;
         $("#orderBalanceTxt").val(balance);
+
+        if (balance === 0) {
+            $("#orderBalanceTxt").css("border-color", "green");
+        } else {
+            $("#orderBalanceTxt").css("border-color", "red"); // This will remove the border color.
+        }
     });
-
-
     $("#orderDiscountTxt").keyup(function (e) {
         var total =parseInt($("#totalTxt").text());
         var discount =parseInt($("#orderDiscountTxt").val());
