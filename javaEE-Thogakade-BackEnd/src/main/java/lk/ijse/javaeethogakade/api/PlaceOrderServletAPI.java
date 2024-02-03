@@ -50,7 +50,7 @@ public class PlaceOrderServletAPI extends HttpServlet {
                     Boolean orderDetailResult = SQLUtil.execute(sqlOrderDetail, orderDetail.getItemCode(), orderDto.getOrderID(), orderDetail.getQuantity(), orderDetail.getItemPrice());
 
                     if (!orderDetailResult) {
-                        connection.rollback(); // Rollback transaction if any detail fails
+                        connection.rollback();
                         resp.getWriter().println("Failed to save order details");
                         return;
                     }
