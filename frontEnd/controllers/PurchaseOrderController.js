@@ -147,6 +147,7 @@ $("#selectCustomerId").change(function () {
         var total = price * qty;
         var itemID = $("#itemID").val();
         var itemName = $("#ItemNameOrder").val();
+
         Orders.push({
             itemID: itemID,
             itemName: itemName,
@@ -158,8 +159,8 @@ $("#selectCustomerId").change(function () {
         orderDetails.push({
             itemCode: itemID,
             orderID: $("#oId").val(),
-            quantity: qty,
-            itemPrice: price
+            quantity: parseInt(qty),
+            itemPrice:parseFloat(price)
         });
 
         updateOrderTable();
@@ -222,12 +223,17 @@ function updateOrderTable() {
 }
 
 function saveOrder(){
+    var currentDate = new Date();
+    var formattedDate = currentDate.toISOString().split('T')[0]; // Format as "YYYY-MM-DD"
+
     var order = {
-        id: $("#oId").val(),
-        date: $("#oDate").val(),
-        customerId: $("#CustomerIDORderForm").val(),
-        orderDetails: orderDetails
+        orderID: $("#oId").val(),
+        orderDate: formattedDate,
+        cusID: $("#CustomerIDORderForm").val(),
+        orderItems: orderDetails
     };
+
+
     $.ajax({
         method: "POST",
         url: "http://localhost:8080/check/order",
