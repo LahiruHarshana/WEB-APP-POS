@@ -66,7 +66,7 @@ public class PlaceOrderServletAPI extends HttpServlet {
                     }
                 }
 
-                connection.commit(); // Commit the transaction if everything is successful
+                connection.commit();
                 resp.getWriter().println("Order, Order Details, and Item Quantity updated successfully");
             } else {
                 resp.getWriter().println("Failed to save order");
