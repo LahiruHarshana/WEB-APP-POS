@@ -5,7 +5,7 @@ import lombok.*;
 
 @Data
 @AllArgsConstructor
-@lombok.NoArgsConstructor
+@NoArgsConstructor
 public class OrderDto {
     private String orderID;
     private String orderDate;
