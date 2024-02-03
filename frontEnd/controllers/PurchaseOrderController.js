@@ -182,10 +182,10 @@ $("#selectCustomerId").change(function () {
             type: "POST",
             url: "http://localhost:8080/check/order",
             data: {
-                orderId: $("#oId").val(),
-                date: $("#date").val(),
+                orderID: $("#oId").val(),
+                orderDate: $("#date").val(),
                 customerId: $("#CustomerIDORderForm").val(),
-                orderItems: Orders
+                orderItems: orderDetails
             },
             success: function (resp) {
                 alert("Order saved successfully");
