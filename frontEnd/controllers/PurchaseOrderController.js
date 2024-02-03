@@ -148,11 +148,25 @@ $("#selectCustomerId").change(function () {
         var itemID = $("#itemID").val();
         var itemName = $("#ItemNameOrder").val();
 
+        Orders.push({
+            itemID: itemID,
+            itemName: itemName,
+            unitPrice: price,
+            Qty: qty,
+            total: total
+        });
+
+
         updateOrderTable();
         loadTotal();
     });
     function loadTotal() {
-
+        var total = 0;
+        Orders.forEach((orders) => {
+            total += orders.total;
+        });
+        $("#OrderSubTotal").text(total);
+        $("#totalTxt").text(total);
     }
 
     $("#oSaveBtn").click(function () {
