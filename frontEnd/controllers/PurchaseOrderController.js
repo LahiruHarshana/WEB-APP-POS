@@ -3,7 +3,7 @@ import { validated1, validated2, validated3, validated4, validated5, validated6,
 
 
 var Orders = [];
-
+var orderDetails = [];
 $(document).ready(function () {
     loadCustomerIds();
     loadItemIds();
@@ -147,6 +147,7 @@ $("#selectCustomerId").change(function () {
         var total = price * qty;
         var itemID = $("#itemID").val();
         var itemName = $("#ItemNameOrder").val();
+        var orderID = $("#oId");
 
         Orders.push({
             itemID: itemID,
@@ -155,6 +156,15 @@ $("#selectCustomerId").change(function () {
             Qty: qty,
             total: total
         });
+
+        orderDetails.push({
+            itemCode: itemID,
+            orderID: price,
+            Qty: qty,
+        });
+
+
+
         updateOrderTable();
         loadTotal();
 
