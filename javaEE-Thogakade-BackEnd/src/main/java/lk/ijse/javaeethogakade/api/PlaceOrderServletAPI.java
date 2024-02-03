@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 @WebServlet(name = "PlaceOrderServletAPI", urlPatterns = "/order/*")
@@ -26,7 +27,6 @@ public class PlaceOrderServletAPI extends HttpServlet {
                 jsonInput.append(line);
             }
             ObjectMapper objectMapper = new ObjectMapper();
-            // Assuming you have a corresponding OrderDto class for your JSON structure
             OrderDto orderDto = objectMapper.readValue(jsonInput.toString(), OrderDto.class);
 
             // Now you can extract data from the orderDto and save it to the database
