@@ -13,6 +13,7 @@ import lk.ijse.javaeethogakade.util.SQLUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "PlaceOrderServletAPI", urlPatterns = "/order/*")
 public class PlaceOrderServletAPI extends HttpServlet {
@@ -38,7 +39,7 @@ public class PlaceOrderServletAPI extends HttpServlet {
             if (orderResult) {
                 for (OrderDetailDto orderDetail : orderDto.getOrderItems()) {
                     String sqlOrderDetail = "INSERT INTO Order_Detail (itemCode, orderID, quantity, itemPrice) VALUES (?, ?, ?, ?)";
-                    Boolean orderDetailResult = SQLUtil.execute(sqlOrderDetail, orderDetail.getItemCode(), orderDto.getOrderID(), orderDetail.getQuantity(), orderDetail.getUnitPrice());
+                    Boolean orderDetailResult = SQLUtil.execute(sqlOrderDetail, orderDetail.getItemCode(), orderDto.getOrderID(), orderDetail.getQuantity(), orderDetail.getItemPrice());
 
                     if (!orderDetailResult) {
                         resp.getWriter().println("Failed to save order details");
@@ -50,7 +51,7 @@ public class PlaceOrderServletAPI extends HttpServlet {
             } else {
                 resp.getWriter().println("Failed to save order");
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
