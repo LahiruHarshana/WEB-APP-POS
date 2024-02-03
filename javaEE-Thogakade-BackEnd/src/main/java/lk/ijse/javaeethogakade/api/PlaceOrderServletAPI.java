@@ -36,7 +36,6 @@ public class PlaceOrderServletAPI extends HttpServlet {
                     String sqlOrderDetail = "INSERT INTO Order_Detail (itemCode, orderID, quantity, itemPrice) VALUES (?, ?, ?, ?)";
                     Boolean orderDetailResult = SQLUtil.execute(sqlOrderDetail, orderDetail.getItemID(), orderDto.getOrderId(), orderDetail.getQty(), orderDetail.getUnitPrice());
 
-                    // You may want to handle errors or log them appropriately
                     if (!orderDetailResult) {
                         resp.getWriter().println("Failed to save order details");
                         return;
