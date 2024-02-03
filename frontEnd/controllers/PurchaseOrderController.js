@@ -187,7 +187,6 @@ $("#selectCustomerId").change(function () {
              $("#totalTxt").text("");
             $("#selectCustomerId").children().remove();
             $("#oSelectItem").children().remove();
-
     });
 
 
