@@ -32,7 +32,6 @@ public class PlaceOrderServletAPI extends HttpServlet {
             Boolean orderResult = SQLUtil.execute(sqlOrder, orderDto.getOrderId(), orderDto.getOrderDate(), orderDto.getCustomerId());
 
             if (orderResult) {
-                // Assuming you have a corresponding OrderDetailDto class for your JSON structure
                 for (OrderDetailDto orderDetail : orderDto.getOrderItems()) {
                     String sqlOrderDetail = "INSERT INTO Order_Detail (itemCode, orderID, quantity, itemPrice) VALUES (?, ?, ?, ?)";
                     Boolean orderDetailResult = SQLUtil.execute(sqlOrderDetail, orderDetail.getItemID(), orderDto.getOrderId(), orderDetail.getQty(), orderDetail.getUnitPrice());
