@@ -169,6 +169,24 @@ $("#selectCustomerId").change(function () {
     }
 
     $("#oSaveBtn").click(function () {
+        $ajax({
+            type: "POST",
+            url: "http://localhost:8080/check/order",
+            data: {
+                orderId: $("#oId").val(),
+                date: $("#date").val(),
+                customerId: $("#CustomerIDORderForm").val(),
+                orderItems: Orders
+            },
+            success: function (resp) {
+                alert("Order saved successfully");
+                Orders = [];
+            },
+            error: function (resp) {
+                alert("Failed to save order");
+            }
+        });
+
             $("#oId").val("");
            $("#date").val("");
              $("#CustomerIDORderForm").val("");
