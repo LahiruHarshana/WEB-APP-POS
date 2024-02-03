@@ -1,7 +1,7 @@
 package lk.ijse.javaeethogakade.dto;
 
 
-import lombok.Data;
+import lombok.*;
 
 @Data
 @lombok.AllArgsConstructor
