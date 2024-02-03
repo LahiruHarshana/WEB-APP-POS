@@ -1,8 +1,8 @@
 package lk.ijse.javaeethogakade.dto;
 
 public class OrderDto {
-    private String orderId;
+    private String orderID;
     private String orderDate;
-    private String customerId;
+    private String cusID;
 
 }
