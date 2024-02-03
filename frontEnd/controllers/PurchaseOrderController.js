@@ -158,7 +158,7 @@ $("#selectCustomerId").change(function () {
         });
 
         orderDetails.push({
-            orderId: orderID,
+            itemCode: itemID,
             orderID: orderID,
             quantity: qty,
             itemPrice: price
