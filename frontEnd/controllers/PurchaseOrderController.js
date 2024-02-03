@@ -199,7 +199,7 @@ $("#selectCustomerId").change(function () {
         if (balance === 0) {
             $("#orderBalanceTxt").css("border-color", "green");
         } else {
-            $("#orderBalanceTxt").css("border-color", "red"); // This will remove the border color.
+            $("#orderBalanceTxt").css("border-color", "red");
         }
     });
     $("#orderDiscountTxt").keyup(function (e) {
