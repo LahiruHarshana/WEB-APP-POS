@@ -185,8 +185,7 @@ $("#selectCustomerId").change(function () {
             $("#orderBalanceTxt").val("");
              $("#OrderSubTotal").text("");
              $("#totalTxt").text("");
-            $("#selectCustomerId").children().remove();
-            $("#oSelectItem").children().remove();
+
     });
 
 
@@ -195,12 +194,12 @@ $("#selectCustomerId").change(function () {
         var cash = parseInt($("#orderCashTxt").val());
         var balance = cash - total;
         $("#orderBalanceTxt").val(balance);
-
-        if (balance === 0) {
+        if (parseInt($("#orderBalanceTxt").val()) === 0) {
             $("#orderBalanceTxt").css("border-color", "green");
         } else {
             $("#orderBalanceTxt").css("border-color", "red");
         }
+
     });
     $("#orderDiscountTxt").keyup(function (e) {
         var total =parseInt($("#totalTxt").text());
