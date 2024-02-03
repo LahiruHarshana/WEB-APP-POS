@@ -28,8 +28,6 @@ public class PlaceOrderServletAPI extends HttpServlet {
             }
             ObjectMapper objectMapper = new ObjectMapper();
             OrderDto orderDto = objectMapper.readValue(jsonInput.toString(), OrderDto.class);
-
-            // Now you can extract data from the orderDto and save it to the database
             String sqlOrder = "INSERT INTO orders (orderID, orderDate, cusID) VALUES (?, ?, ?)";
             Boolean orderResult = SQLUtil.execute(sqlOrder, orderDto.getOrderId(), orderDto.getOrderDate(), orderDto.getCustomerId());
 
