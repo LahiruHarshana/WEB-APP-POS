@@ -33,7 +33,7 @@ public class PlaceOrderServletAPI extends HttpServlet {
             ObjectMapper objectMapper = new ObjectMapper();
             OrderDto orderDto = objectMapper.readValue(jsonInput.toString(), OrderDto.class);
             String sqlOrder = "INSERT INTO orders (orderID, orderDate, cusID) VALUES (?, ?, ?)";
-            Boolean orderResult = SQLUtil.execute(sqlOrder, orderDto.getOrderID(), orderDto.getOrderDate(), orderDto.getCustomerId());
+            Boolean orderResult = SQLUtil.execute(sqlOrder, orderDto.getOrderID(), orderDto.getOrderDate(), orderDto.getCusID());
 
             if (orderResult) {
                 for (OrderDetailDto orderDetail : orderDto.getOrderItems()) {
