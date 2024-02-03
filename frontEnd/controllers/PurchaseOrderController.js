@@ -158,12 +158,11 @@ $("#selectCustomerId").change(function () {
         });
 
         orderDetails.push({
-            itemCode: itemID,
-            orderID: price,
-            Qty: qty,
+            orderId: orderID,
+            orderID: orderID,
+            quantity: qty,
+            itemPrice: price
         });
-
-
 
         updateOrderTable();
         loadTotal();
