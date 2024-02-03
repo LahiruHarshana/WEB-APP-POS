@@ -19,6 +19,18 @@ import java.sql.SQLException;
 @WebServlet(name = "PlaceOrderServletAPI", urlPatterns = "/order/*")
 public class PlaceOrderServletAPI extends HttpServlet {
 
+
+
+    @Override
+    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Pre-flight request handling
+        resp.setHeader("Access-Control-Allow-Origin", "*");
+        resp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
+        resp.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+        // Let the actual request handler process the request
+        resp.setStatus(HttpServletResponse.SC_OK);
+    }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Access-Control-Allow-Origin", "*");
