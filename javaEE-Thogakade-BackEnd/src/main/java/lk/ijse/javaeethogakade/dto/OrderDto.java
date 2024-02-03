@@ -4,7 +4,7 @@ package lk.ijse.javaeethogakade.dto;
 import lombok.*;
 
 @Data
-@lombok.AllArgsConstructor
+@AllArgsConstructor
 @lombok.NoArgsConstructor
 public class OrderDto {
     private String orderID;
