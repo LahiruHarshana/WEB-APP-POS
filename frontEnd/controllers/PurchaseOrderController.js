@@ -189,7 +189,7 @@ $("#selectCustomerId").change(function () {
             },
             success: function (resp) {
                 alert("Order saved successfully");
-                Orders = [];
+                orderDetails = [];
             },
             error: function (resp) {
                 alert("Failed to save order");
