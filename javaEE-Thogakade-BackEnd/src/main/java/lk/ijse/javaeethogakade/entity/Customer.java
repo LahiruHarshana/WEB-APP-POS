@@ -4,4 +4,5 @@ public class Customer {
     private String cusID;
     private String cusName;
     private String cusAddress;
+    private double cusSalary;
 }
