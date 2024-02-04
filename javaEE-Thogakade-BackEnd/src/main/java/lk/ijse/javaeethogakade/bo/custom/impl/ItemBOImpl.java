@@ -14,7 +14,12 @@ public class ItemBOImpl implements ItemBO {
     ItemDAO itemDAO = new ItemDAOImpl();
     @Override
     public ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException {
-        return null;
+        ArrayList<Items> allEntityData = itemDAO.getAll();
+        ArrayList<ItemDTO> allDTOData= new ArrayList<>();
+        for (Items i : allEntityData) {
+            allDTOData.add(new ItemDTO(i.getItemCode(),i.getDescription(),i.getUnitPrice(),i.getQtyOnHand()));
+        }
+        return allDTOData;
     }
 
     @Override
