@@ -34,7 +34,7 @@ public class CustomerBOImpl implements CustomerBO {
 
     @Override
     public boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        return customerDAO.exist(id);
     }
 
     @Override
