@@ -52,7 +52,7 @@ public class ItemDAOImpl implements ItemDAO {
     @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
         try (Connection connection = DBConnectionPool.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Items WHERE itemCode=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Items WHERE ItemCode=?");
             preparedStatement.setObject(1, id);
             return preparedStatement.executeUpdate() > 0;
         }
