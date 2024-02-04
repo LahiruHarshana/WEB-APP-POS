@@ -156,9 +156,7 @@ public class ItemServletAPI extends HttpServlet {
             ObjectMapper objectMapper = new ObjectMapper();
             ItemDTO itemDTO = objectMapper.readValue(jsonInput.toString(), ItemDTO.class);
 
-            String sql = "UPDATE Items SET ItemName=?, ItemPrice=?, ItemQuantity=? WHERE ItemCode=?";
-            Boolean result = SQLUtil.execute(sql, itemDTO.getDescription(), itemDTO.getUnitPrice(), itemDTO.getQtyOnHand(), itemDTO.getCode());
-
+            Boolean result = itemBO.updateItem(itemDTO);
             JsonObjectBuilder jsonResponse = Json.createObjectBuilder();
 
             if (result) {
