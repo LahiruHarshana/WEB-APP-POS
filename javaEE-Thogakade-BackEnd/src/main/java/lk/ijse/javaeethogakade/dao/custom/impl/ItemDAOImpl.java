@@ -1,8 +1,11 @@
 package lk.ijse.javaeethogakade.dao.custom.impl;
 
+import lk.ijse.javaeethogakade.dao.DBConnectionPool;
 import lk.ijse.javaeethogakade.dao.custom.ItemDAO;
 import lk.ijse.javaeethogakade.entity.Items;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -14,7 +17,14 @@ public class ItemDAOImpl implements ItemDAO {
 
     @Override
     public boolean add(Items entity) throws SQLException, ClassNotFoundException {
-        return false;
+        try (Connection connection = DBConnectionPool.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Item VALUES (?, ?, ?, ?)");
+            preparedStatement.setObject(1, entity.getItemCode());
+            preparedStatement.setObject(2, entity.getItemName());
+            preparedStatement.setObject(3, entity.getItemPrice());
+            preparedStatement.setObject(4, entity.getItemQuantity());
+            return preparedStatement.executeUpdate() > 0;
+        }
     }
 
     @Override

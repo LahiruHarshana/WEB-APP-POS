@@ -186,5 +186,4 @@ public class CustomerServletAPI extends HttpServlet {
             throw new ServletException("Error in doDelete method", e);
         }
     }
-
 }
