@@ -18,7 +18,7 @@ public class ItemDAOImpl implements ItemDAO {
     @Override
     public boolean add(Items entity) throws SQLException, ClassNotFoundException {
         try (Connection connection = DBConnectionPool.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Item VALUES (?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Items VALUES (?, ?, ?, ?)");
             preparedStatement.setObject(1, entity.getItemCode());
             preparedStatement.setObject(2, entity.getItemName());
             preparedStatement.setObject(3, entity.getItemPrice());
