@@ -81,7 +81,6 @@ public class CustomerServletAPI extends HttpServlet {
                 PrintWriter writer = response.getWriter();
                 writer.print(customer.build());
             } else {
-                // Handle the case when the customer with the given ID is not found
                 PrintWriter writer = response.getWriter();
                 writer.print("Customer not found");
             }
