@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lk.ijse.javaeethogakade.bo.custom.ItemBO;
 import lk.ijse.javaeethogakade.dto.ItemDTO;
 import lk.ijse.javaeethogakade.util.SQLUtil;
 
@@ -21,6 +22,8 @@ import java.util.ArrayList;
 
 @WebServlet(name = "itemServlet", value = "/item/*")
 public class ItemServletAPI extends HttpServlet {
+
+    ItemBO itemBO = new ItemBOImpl();
 
 
     @Override
@@ -112,8 +115,7 @@ public class ItemServletAPI extends HttpServlet {
             ObjectMapper objectMapper = new ObjectMapper();
             ItemDTO itemDTO = objectMapper.readValue(jsonInput.toString(), ItemDTO.class);
 
-            String sql = "INSERT INTO Items VALUES (?,?,?,?)";
-            Boolean result = SQLUtil.execute(sql, itemDTO.getCode(), itemDTO.getDescription(), itemDTO.getUnitPrice(), itemDTO.getQtyOnHand());
+            Boolean
 
             JsonObjectBuilder jsonResponse = Json.createObjectBuilder();
 
