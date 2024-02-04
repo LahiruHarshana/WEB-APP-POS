@@ -11,7 +11,6 @@ public class CustomerDAOImpl implements CustomerDAO {
     public ArrayList<Customer> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
-
     @Override
     public boolean add(Customer entity) throws SQLException, ClassNotFoundException {
         return false;
