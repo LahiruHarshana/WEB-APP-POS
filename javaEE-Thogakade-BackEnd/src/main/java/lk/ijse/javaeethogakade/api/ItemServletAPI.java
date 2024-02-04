@@ -70,28 +70,23 @@ public class ItemServletAPI extends HttpServlet {
             return;
         }
 
-        try {
-            String sql = "SELECT * FROM Items";
-            ResultSet rst = SQLUtil.execute(sql);
 
+        try {
+            ArrayList<ItemDTO> Items = itemBO.getAllItems();
+            resp.setContentType("application/json");
+
+            JsonArrayBuilder allItems = Json.createArrayBuilder();
             PrintWriter writer = resp.getWriter();
 
 
-            JsonArrayBuilder allItems = Json.createArrayBuilder();
+            for (ItemDTO item : Items) {
+                JsonObjectBuilder items = Json.createObjectBuilder();
+                items.add("code", item.getCode());
+                items.add("description", item.getDescription());
+                items.add("unitPrice", item.getUnitPrice());
+                items.add("qtyOnHand", item.getQtyOnHand());
 
-            while (rst.next()) {
-                String code = rst.getString(1);
-                String description = rst.getString(2);
-                double unitPrice = rst.getDouble(3);
-                int qtyOnHand = rst.getInt(4);
-
-                JsonObjectBuilder item = Json.createObjectBuilder();
-
-                item.add("code", code);
-                item.add("description", description);
-                item.add("unitPrice", unitPrice);
-                item.add("qtyOnHand", qtyOnHand);
-                allItems.add(item.build());
+                allItems.add(items.build());
             }
             writer.print(allItems.build());
         } catch (SQLException | ClassNotFoundException e) {
