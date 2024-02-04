@@ -1,5 +1,6 @@
 package lk.ijse.javaeethogakade.entity;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
 public class Customer {
     private String cusID;
     private String cusName;
