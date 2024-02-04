@@ -1,4 +1,8 @@
 package lk.ijse.javaeethogakade.dao.custom;
 
-public interface ItemDAO {
+import lk.ijse.javaeethogakade.dao.CrudDAO;
+import lk.ijse.javaeethogakade.entity.Items;
+
+public interface ItemDAO extends CrudDAO<Items>{
+
 }
