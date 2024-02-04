@@ -116,7 +116,7 @@ public class ItemServletAPI extends HttpServlet {
             ObjectMapper objectMapper = new ObjectMapper();
             ItemDTO itemDTO = objectMapper.readValue(jsonInput.toString(), ItemDTO.class);
 
-            Boolean
+            Boolean result = itemBO.saveItem(itemDTO);
 
             JsonObjectBuilder jsonResponse = Json.createObjectBuilder();
 
