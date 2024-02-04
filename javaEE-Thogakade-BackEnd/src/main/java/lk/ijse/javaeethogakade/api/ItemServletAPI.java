@@ -26,7 +26,6 @@ public class ItemServletAPI extends HttpServlet {
 
     ItemBO itemBO = new ItemBOImpl();
 
-
     @Override
     protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
