@@ -69,29 +69,23 @@ public class CustomerServletAPI extends HttpServlet {
     private void getAll(String customerId, HttpServletResponse response) {
         response.setContentType("application/json");
         try {
-            String sql = "SELECT * FROM customer WHERE cusID=?";
-            ResultSet rst = SQLUtil.execute(sql, customerId);
 
-            PrintWriter writer = response.getWriter();
-
+            CustomerDto customerDto = customerBO.searchCustomer(customerId);
             JsonArrayBuilder allCustomer = Json.createArrayBuilder();
-
-            while (rst.next()) {
-                String id = rst.getString("cusID");
-                String name = rst.getString("cusName");
-                String address = rst.getString("cusAddress");
-                double salary = rst.getDouble("cusSalary");
-
+            if (customerDto != null) {
                 JsonObjectBuilder customer = Json.createObjectBuilder();
+                customer.add("id", customerDto.getId());
+                customer.add("name", customerDto.getName());
+                customer.add("address", customerDto.getAddress());
+                customer.add("salary", customerDto.getSalary());
 
-                customer.add("id", id);
-                customer.add("name", name);
-                customer.add("address", address);
-                customer.add("salary", salary);
-
-                allCustomer.add(customer.build());
+                PrintWriter writer = response.getWriter();
+                writer.print(customer.build());
+            } else {
+                // Handle the case when the customer with the given ID is not found
+                PrintWriter writer = response.getWriter();
+                writer.print("Customer not found");
             }
-            writer.print(allCustomer.build());
         } catch (ClassNotFoundException | SQLException | IOException e) {
             throw new RuntimeException(e);
         }
