@@ -1,8 +1,11 @@
 package lk.ijse.javaeethogakade.dao.custom.impl;
 
+import lk.ijse.javaeethogakade.dao.DBConnectionPool;
 import lk.ijse.javaeethogakade.dao.custom.CustomerDAO;
 import lk.ijse.javaeethogakade.entity.Customer;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,7 +16,15 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
     @Override
     public boolean add(Customer entity) throws SQLException, ClassNotFoundException {
-        return false;
+        try(Connection conn = DBConnectionPool.getConnection()){
+            PreparedStatement pstm = conn.prepareStatement("INSERT INTO customer VALUES (?,?,?,?)");
+            pstm.setString(1, entity.getCusID());
+            pstm.setString(2, entity.getCusName());
+            pstm.setString(3, entity.getCusAddress());
+            pstm.setDouble(4, entity.getCusSalary());
+
+
+        }
     }
 
     @Override

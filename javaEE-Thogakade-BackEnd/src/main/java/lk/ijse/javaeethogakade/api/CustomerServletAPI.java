@@ -61,7 +61,6 @@ public class CustomerServletAPI extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
-
     private void getAll(String customerId, HttpServletResponse response) {
         response.setContentType("application/json");
         try {
