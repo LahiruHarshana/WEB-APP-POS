@@ -1,4 +1,6 @@
 package lk.ijse.javaeethogakade.dao.custom.impl;
 
-public class OrderDAOImpl {
+import lk.ijse.javaeethogakade.dao.custom.OrderDAO;
+
+public class OrderDAOImpl implements OrderDAO {
 }
