@@ -6,13 +6,22 @@ import lk.ijse.javaeethogakade.entity.Items;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ItemDAOImpl implements ItemDAO {
     @Override
     public ArrayList<Items> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+        ArrayList<Items> allItems = new ArrayList<>();
+        try (Connection connection = DBConnectionPool.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Items");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                allItems.add(new Items(resultSet.getString(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getInt(4)));
+            }
+        }
+        return allItems;
     }
 
     @Override
