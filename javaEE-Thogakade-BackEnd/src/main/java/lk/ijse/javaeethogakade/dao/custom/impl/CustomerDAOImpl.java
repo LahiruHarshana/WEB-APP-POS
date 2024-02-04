@@ -23,6 +23,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             pstm.setString(3, entity.getCusAddress());
             pstm.setDouble(4, entity.getCusSalary());
 
+            return pstm.executeUpdate() > 0;
 
         }
     }
