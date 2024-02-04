@@ -1,4 +1,7 @@
 package lk.ijse.javaeethogakade.bo.custom;
 
-public interface PurchaseOrderBO {
+import lk.ijse.javaeethogakade.bo.SuperBO;
+
+public interface PurchaseOrderBO extends SuperBO {
+
 }
