@@ -158,9 +158,7 @@ public class CustomerServletAPI extends HttpServlet {
             ObjectMapper objectMapper = new ObjectMapper();
             CustomerDto customerDto = objectMapper.readValue(jsonInput.toString(), CustomerDto.class);
 
-            String sql = "UPDATE customer SET cusName=?, cusAddress=?, cusSalary=? WHERE cusID=?";
-            Boolean result = SQLUtil.execute(sql, customerDto.getName(), customerDto.getAddress(), customerDto.getSalary(), customerDto.getId());
-
+            Boolean result = customerBO.updateCustomer(customerDto);
             if (result) {
                 response.getWriter().println("Customer has been updated successfully");
             } else {
