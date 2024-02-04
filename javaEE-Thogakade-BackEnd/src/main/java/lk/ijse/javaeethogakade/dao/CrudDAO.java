@@ -1,4 +1,4 @@
 package lk.ijse.javaeethogakade.dao;
 
-public interface CrudDAO {
+public interface CrudDAO <T> extends SuperDAO{
 }
