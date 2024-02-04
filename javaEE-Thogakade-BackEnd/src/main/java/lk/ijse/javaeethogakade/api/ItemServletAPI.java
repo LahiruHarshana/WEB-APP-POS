@@ -187,8 +187,8 @@ public class ItemServletAPI extends HttpServlet {
             if (pathInfo != null && pathInfo.length() > 1) {
                 String code = pathInfo.substring(1);
 
-                String sql = "DELETE FROM Items WHERE ItemCode=?";
-                Boolean result = SQLUtil.execute(sql, code);
+
+                Boolean result = itemBO.deleteItem(code);
 
                 JsonObjectBuilder jsonResponse = Json.createObjectBuilder();
 
