@@ -6,13 +6,22 @@ import lk.ijse.javaeethogakade.entity.Customer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public ArrayList<Customer> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+        ArrayList<Customer> allCustomers = new ArrayList<>();
+        try(Connection conn = DBConnectionPool.getConnection()){
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM customer");
+            ResultSet rst = pstm.executeQuery();
+            while (rst.next()){
+                allCustomers.add(new Customer(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4)));
+            }
+        }
+        return allCustomers;
     }
     @Override
     public boolean add(Customer entity) throws SQLException, ClassNotFoundException {
