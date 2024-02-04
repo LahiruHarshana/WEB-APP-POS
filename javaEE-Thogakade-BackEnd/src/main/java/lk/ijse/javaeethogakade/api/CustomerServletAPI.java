@@ -12,9 +12,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import lk.ijse.javaeethogakade.util.SQLUtil;
 import lk.ijse.javaeethogakade.dto.CustomerDto;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -96,6 +101,7 @@ public class CustomerServletAPI extends HttpServlet {
         response.addHeader("Access-Control-Allow-Headers", "Content-Type");
         response.addHeader("Access-Control-Max-Age", "3600");
         response.setContentType("application/json");
+
 
         String customerId = request.getParameter("customerId");
         if (customerId != null) {
