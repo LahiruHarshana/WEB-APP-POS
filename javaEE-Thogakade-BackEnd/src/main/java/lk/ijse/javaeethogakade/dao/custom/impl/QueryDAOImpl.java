@@ -1,4 +1,6 @@
 package lk.ijse.javaeethogakade.dao.custom.impl;
 
-public class QueryDAOImpl {
+import lk.ijse.javaeethogakade.dao.custom.QueryDAO;
+
+public class QueryDAOImpl implements QueryDAO {
 }
