@@ -78,7 +78,6 @@ public class ItemServletAPI extends HttpServlet {
             JsonArrayBuilder allItems = Json.createArrayBuilder();
             PrintWriter writer = resp.getWriter();
 
-
             for (ItemDTO item : Items) {
                 JsonObjectBuilder items = Json.createObjectBuilder();
                 items.add("code", item.getCode());
