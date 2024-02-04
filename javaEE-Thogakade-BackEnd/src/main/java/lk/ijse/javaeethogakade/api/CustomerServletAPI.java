@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.ijse.javaeethogakade.bo.custom.CustomerBO;
 import lk.ijse.javaeethogakade.bo.custom.impl.CustomerBOImpl;
+import lk.ijse.javaeethogakade.entity.Customer;
 import lk.ijse.javaeethogakade.util.SQLUtil;
 import lk.ijse.javaeethogakade.dto.CustomerDto;
 
@@ -24,6 +25,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "customerServlet", value = "/customer/*")
 public class CustomerServletAPI extends HttpServlet {
@@ -111,20 +113,18 @@ public class CustomerServletAPI extends HttpServlet {
             return;
         }
         try {
-            String sql = "SELECT * FROM customer";
-            ResultSet rst = SQLUtil.execute(sql);
+            List<CustomerDto> allCustomers = customerBO.getAllCustomers();
 
             PrintWriter writer = response.getWriter();
             response.setContentType("application/json");
 
-
             JsonArrayBuilder allCustomer = Json.createArrayBuilder();
 
-            while (rst.next()) {
-                String id = rst.getString("cusID");
-                String name = rst.getString("cusName");
-                String address = rst.getString("cusAddress");
-                double salary = rst.getDouble("cusSalary");
+            for (CustomerDto c : allCustomers) {
+                String id = c.getId();
+                String name = c.getName();
+                String address = c.getAddress();
+                double salary = c.getSalary();
 
                 JsonObjectBuilder customer = Json.createObjectBuilder();
 
