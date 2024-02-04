@@ -24,7 +24,6 @@ public class CustomerDAOImpl implements CustomerDAO {
             pstm.setDouble(4, entity.getCusSalary());
 
             return pstm.executeUpdate() > 0;
-
         }
     }
 
