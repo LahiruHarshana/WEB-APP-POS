@@ -17,7 +17,7 @@ public class ItemBOImpl implements ItemBO {
         ArrayList<Items> allEntityData = itemDAO.getAll();
         ArrayList<ItemDTO> allDTOData= new ArrayList<>();
         for (Items i : allEntityData) {
-            allDTOData.add(new ItemDTO(i.getItemCode(),i.getDescription(),i.getUnitPrice(),i.getQtyOnHand()));
+            allDTOData.add(new ItemDTO(i.getItemCode(),i.getItemName(),i.getItemPrice(),i.getItemQuantity()));
         }
         return allDTOData;
     }
