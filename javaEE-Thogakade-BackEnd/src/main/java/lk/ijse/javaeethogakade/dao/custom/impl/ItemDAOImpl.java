@@ -19,10 +19,10 @@ public class ItemDAOImpl implements ItemDAO {
     public boolean add(Items entity) throws SQLException, ClassNotFoundException {
         try (Connection connection = DBConnectionPool.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Items VALUES (?, ?, ?, ?)");
-            preparedStatement.setObject(1, entity.getItemCode());
-            preparedStatement.setObject(2, entity.getItemName());
-            preparedStatement.setObject(3, entity.getItemPrice());
-            preparedStatement.setObject(4, entity.getItemQuantity());
+            preparedStatement.setString(1, entity.getItemCode());
+            preparedStatement.setString(2, entity.getItemName());
+            preparedStatement.setDouble(3, entity.getItemPrice());
+            preparedStatement.setInt(4, entity.getItemQuantity());
             return preparedStatement.executeUpdate() > 0;
         }
     }
@@ -30,11 +30,11 @@ public class ItemDAOImpl implements ItemDAO {
     @Override
     public boolean update(Items entity) throws SQLException, ClassNotFoundException {
         try(Connection connection = DBConnectionPool.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Items SET ItemName=?, ItemPrice=?, ItemQty=? WHERE ItemCode=?");
-            preparedStatement.setObject(1, entity.getItemName());
-            preparedStatement.setObject(2, entity.getItemPrice());
-            preparedStatement.setObject(3, entity.getItemQuantity());
-            preparedStatement.setObject(4, entity.getItemCode());
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Items SET ItemName=?, ItemPrice=?, ItemQuantity=? WHERE ItemCode=?");
+            preparedStatement.setString(1, entity.getItemName());
+            preparedStatement.setDouble(2, entity.getItemPrice());
+            preparedStatement.setInt(3, entity.getItemQuantity());
+            preparedStatement.setString(4, entity.getItemCode());
             return preparedStatement.executeUpdate() > 0;
         }
     }
