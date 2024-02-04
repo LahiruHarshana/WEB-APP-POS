@@ -1,4 +1,7 @@
 package lk.ijse.javaeethogakade.dao.custom;
 
-public interface OrderDAO {
+import lk.ijse.javaeethogakade.dao.CrudDAO;
+import lk.ijse.javaeethogakade.entity.Orders;
+
+public interface OrderDAO extends CrudDAO<Orders> {
 }
