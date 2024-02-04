@@ -1,4 +1,6 @@
 package lk.ijse.javaeethogakade.dao.custom;
 
-public interface QueryDAO {
+import lk.ijse.javaeethogakade.dao.SuperDAO;
+
+public interface QueryDAO extends SuperDAO {
 }
