@@ -56,7 +56,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
-        return null;
+        try(Connection conn = DBConnectionPool.getConnection()){
+            PreparedStatement pstm = conn.prepareStatement("SELECT cusID FROM customer ORDER BY cusID DESC LIMIT 1");
+            ResultSet rst = pstm.executeQuery();
+            if (rst.next()){
+                String id = rst.getString(1);
+                int newCustomerId = Integer.parseInt(id.replace("C00-", "")) + 1;
+                return String.format("C00-%03d", newCustomerId);
+            }else {
+                return "C00-001";
+            }
+        }
     }
 
     @Override
@@ -70,6 +80,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public Customer search(String id) throws SQLException, ClassNotFoundException {
+        try(Connection conn = DBConnectionPool.getConnection()){
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM customer WHERE cusID=?");
+            pstm.setString(1, id);
+            ResultSet rst = pstm.executeQuery();
+            if (rst.next()){
+                return new Customer(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4));
+            }
+        }
         return null;
     }
 }
