@@ -71,7 +71,6 @@ public class CustomerServletAPI extends HttpServlet {
         try {
 
             CustomerDto customerDto = customerBO.searchCustomer(customerId);
-            JsonArrayBuilder allCustomer = Json.createArrayBuilder();
             if (customerDto != null) {
                 JsonObjectBuilder customer = Json.createObjectBuilder();
                 customer.add("id", customerDto.getId());
