@@ -9,6 +9,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lk.ijse.javaeethogakade.bo.custom.CustomerBO;
+import lk.ijse.javaeethogakade.bo.custom.impl.CustomerBOImpl;
 import lk.ijse.javaeethogakade.util.SQLUtil;
 import lk.ijse.javaeethogakade.dto.CustomerDto;
 
@@ -25,6 +27,8 @@ import java.sql.SQLException;
 
 @WebServlet(name = "customerServlet", value = "/customer/*")
 public class CustomerServletAPI extends HttpServlet {
+
+    CustomerBO customerBO = new CustomerBOImpl();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");
@@ -40,8 +44,7 @@ public class CustomerServletAPI extends HttpServlet {
             ObjectMapper objectMapper = new ObjectMapper();
             CustomerDto customerDto = objectMapper.readValue(jsonInput.toString(), CustomerDto.class);
 
-            String sql = "INSERT INTO customer (cusID, cusName, cusAddress, cusSalary) VALUES (?, ?, ?, ?)";
-            Boolean result = SQLUtil.execute(sql, customerDto.getId(), customerDto.getName(), customerDto.getAddress(), customerDto.getSalary());
+            Boolean result = customerBO.addCustomer(customerDto);
 
             if (result) {
                 response.getWriter().println("Customer has been saved successfully");
