@@ -50,7 +50,12 @@ public class ItemDAOImpl implements ItemDAO {
 
     @Override
     public boolean exist(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        try (Connection connection = DBConnectionPool.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT ItemCode FROM Items WHERE ItemCode=?");
+            preparedStatement.setString(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+        }
     }
 
     @Override
