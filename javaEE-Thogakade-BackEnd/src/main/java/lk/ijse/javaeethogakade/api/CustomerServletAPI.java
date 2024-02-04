@@ -177,8 +177,7 @@ public class CustomerServletAPI extends HttpServlet {
         response.setContentType("text/plain");
         try {
             String customerId = request.getPathInfo().substring(1);
-            String sql = "DELETE FROM customer WHERE cusID=?";
-            Boolean result = SQLUtil.execute(sql, customerId);
+            Boolean result = customerBO.deleteCustomer(customerId);
 
             if (result) {
                 response.getWriter().println("Customer has been deleted successfully");
