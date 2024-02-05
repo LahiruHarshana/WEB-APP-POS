@@ -60,7 +60,6 @@ public class ItemServletAPI extends HttpServlet {
                     item.add("description", description);
                     item.add("unitPrice", unitPrice);
                     item.add("qtyOnHand", qtyOnHand);
-
                     allItems.add(item.build());
                 }
                 writer.print(allItems.build());
