@@ -94,9 +94,9 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
                 }
 
                 connection.commit();
-                resp.getWriter().println("Order, Order Details, and Item Quantity updated successfully");
             } else {
-                resp.getWriter().println("Failed to save order");
+        connection.rollback();
+        return false;
             }
         } catch (ClassNotFoundException | SQLException e) {
             if (connection != null) {
