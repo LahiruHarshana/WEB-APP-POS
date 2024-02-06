@@ -95,6 +95,7 @@ $("#cDeleteBtn").click(() => {
 });
 
 $("#cSearchBtn").click(function () {
+    searchCustomer();
 });
 
 function saveCustomer(){
@@ -155,6 +156,23 @@ function deleteCustomer() {
     });
 }
 
+
+function searchCustomer() {
+    var customerId = $cIdTxt.val();
+
+    $.ajax({
+        type: "GET",
+        url: `http://localhost:8080/check/customer/${customerId}`,
+        success: function (resp) {
+            $cNameTxt.val(resp.name);
+            $cAddressTxt.val(resp.address);
+            $cSalaryText.val(resp.salary);
+        },
+        error: function (resp) {
+            alert("Failed to find the customer");
+        }
+    });
+}
 
 function clearForm() {
     $cIdTxt.val("");
