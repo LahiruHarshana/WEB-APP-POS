@@ -92,4 +92,9 @@ public class ItemDAOImpl implements ItemDAO {
             return new Items(resultSet.getString(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getInt(4));
         }
     }
+
+    @Override
+    public String updateQty(String id) throws Exception {
+        return null;
+    }
 }
