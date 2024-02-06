@@ -157,7 +157,7 @@ function deleteCustomer() {
 
 
 function searchCustomer() {
-    var customerId = $("#cSearchBtn").val();
+    var customerId = $("#cSearchTxt").val();
     $.ajax({
         method: "GET",
         url: "http://localhost:8080/check/customer",
