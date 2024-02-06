@@ -12,7 +12,6 @@ public class DBConnectionPool {
 
     static {
         try {
-            // Initialize JNDI context
             Context initContext = new InitialContext();
             Context envContext = (Context) initContext.lookup("java:/comp/env");
 
