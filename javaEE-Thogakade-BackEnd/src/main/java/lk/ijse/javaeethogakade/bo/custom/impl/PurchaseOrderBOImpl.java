@@ -82,8 +82,6 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
                     if (!orderDetailResult) {
                         System.out.println("Failed to save order details");
                         connection.rollback();
-                        resp.getWriter().println("Failed to save order details");
-                        return;
                     }
 
                     // Update item quantity in the Items table
