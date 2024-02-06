@@ -82,14 +82,14 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
                     if (!orderDetailResult) {
                         System.out.println("Failed to save order details");
                         connection.rollback();
+                        return false;
                     }
 
                     // Update Item Quantity
-                    itemDAO.updateQty(orderDetail.getItemCode(), orderDetail.getQuantity());
+                    Boolean updateQuantityResult = itemDAO.updateQty(orderDetail.getItemCode(), orderDetail.getQuantity());
                     if (!updateQuantityResult) {
                         connection.rollback();
-                        resp.getWriter().println("Failed to update item quantity");
-                        return;
+                        return false;
                     }
                 }
 
