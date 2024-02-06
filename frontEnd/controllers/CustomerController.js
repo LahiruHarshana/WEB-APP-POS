@@ -94,23 +94,7 @@ $("#cDeleteBtn").click(() => {
 });
 
 $("#cSearchBtn").click(function () {
-    const searchValue = $("#cSearchTxt").val();
-
-    if (searchValue.trim() === "") {
-        alert("Please enter a valid Customer ID to search.");
-        return;
-    }
-
-    const customer = Customers.find((c) => c.id === searchValue);
-
-    if (customer) {
-        $cNameTxt.val(customer.name);
-        $cIdTxt.val(customer.id);
-        $cAddressTxt.val(customer.address);
-        $cSalaryText.val(customer.salary);
-    } else {
-        alert("Customer not found.");
-    }
+    searchCustomer();
 });
 
 function saveCustomer(){
@@ -171,5 +155,30 @@ function deleteCustomer() {
     });
 }
 
+
+function clearForm() {
+    $cIdTxt.val("");
+    $cNameTxt.val("");
+    $cAddressTxt.val("");
+    $cSalaryText.val("");
+}
+
+function searchCustomer() {
+    const searchValue = $("#cSearchTxt").val();
+
+    $.ajax({
+        type: "GET",
+        url: `http://localhost:8080/check/customer/${searchValue}`,
+        success: function (resp) {
+            $cIdTxt.val(resp.id);
+            $cNameTxt.val(resp.name);
+            $cAddressTxt.val(resp.address);
+            $cSalaryText.val(resp.salary);
+        },
+        error: function (resp) {
+            alert("Failed to find the customer");
+        }
+    });
+}
 export { saveCustomer, updateCustomer ,deleteCustomer };
 
