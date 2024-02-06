@@ -20,7 +20,7 @@ public class OrderDetailsDAOImpl implements OrderDetailsDAO {
         try(Connection connection = DBConnection.getDbConnection().getConnection()){
             String sql = "INSERT INTO OrderDetails VALUES(?,?,?,?)";
             PreparedStatement pstm = connection.prepareStatement(sql);
-            pstm.setObject(1,entity.getOrderID());
+            pstm.setString(1,entity.getOrderID());
             pstm.setObject(2,entity.getItemCode());
             pstm.setObject(3,entity.getQty());
             pstm.setObject(4,entity.getUnitPrice());
