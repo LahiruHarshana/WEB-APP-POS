@@ -23,8 +23,6 @@ public class PlaceOrderServletAPI extends HttpServlet {
 
     PurchaseOrderBO purchaseOrderBO = new PurchaseOrderBOImpl();
 
-
-
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader("Access-Control-Allow-Origin", "*");
