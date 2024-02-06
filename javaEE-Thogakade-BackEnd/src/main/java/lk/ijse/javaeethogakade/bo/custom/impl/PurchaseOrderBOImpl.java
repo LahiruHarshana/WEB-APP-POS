@@ -84,10 +84,8 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
                         connection.rollback();
                     }
 
-                    // Update item quantity in the Items table
-                    String sqlUpdateQuantity = "UPDATE Items SET ItemQuantity = ItemQuantity - ? WHERE ItemCode = ?";
-                    Boolean updateQuantityResult = SQLUtil.execute(sqlUpdateQuantity, orderDetail.getQuantity(), orderDetail.getItemCode());
-
+                    // Update Item Quantity
+                    itemDAO.updateQty(orderDetail.getItemCode(), orderDetail.getQuantity());
                     if (!updateQuantityResult) {
                         connection.rollback();
                         resp.getWriter().println("Failed to update item quantity");
@@ -108,6 +106,8 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
                     rollbackException.printStackTrace();
                 }
             }
+            throw new RuntimeException(e);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
             if (connection != null) {
