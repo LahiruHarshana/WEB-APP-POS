@@ -75,7 +75,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             if (orderResult) {
                 // Save Order Details
                 for (OrderDetailDto orderDetail : orderDto.getOrderItems()) {
-                    Boolean orderDetailResult = orderDetailsDAO.add(new OrderDetails(orderDetail.getOrderID(), orderDetail.getItemCode(), orderDetail.getQuantity(), orderDetail.getItemPrice()));
+                    Boolean orderDetailResult = orderDetailsDAO.add(new OrderDetails(orderDetail.getItemCode(), orderDetail.getOrderID(), orderDetail.getQuantity(), orderDetail.getItemPrice()));
 
                     if (!orderDetailResult) {
                         System.out.println("Failed to save order details");
@@ -101,8 +101,6 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             throw new RuntimeException("Error processing purchase order", e);
         }
     }
-
-
 
     @Override
     public ItemDTO findItem(String code) throws SQLException, ClassNotFoundException {

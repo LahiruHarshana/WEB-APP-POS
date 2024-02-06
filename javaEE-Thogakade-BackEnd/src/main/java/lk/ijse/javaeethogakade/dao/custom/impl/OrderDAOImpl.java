@@ -22,11 +22,21 @@ public class OrderDAOImpl implements OrderDAO {
             String sql = "INSERT INTO Orders VALUES(?,?,?)";
             PreparedStatement pstm = connection.prepareStatement(sql);
             pstm.setString(1,entity.getOrderID());
-            pstm.setDate(2,(entity.getOrderDate()));
+            pstm.setDate(2, entity.getOrderDate());
             pstm.setString(3,entity.getCusID());
-            return pstm.executeUpdate() > 0;
+
+            // Execute the update
+            int rowsAffected = pstm.executeUpdate();
+
+            // Close the connection after executing the statement
+            connection.close();
+
+            // Return true if at least one row was affected, otherwise false
+            return rowsAffected > 0;
         }
     }
+
+
 
     @Override
     public boolean update(Orders entity) throws SQLException, ClassNotFoundException {

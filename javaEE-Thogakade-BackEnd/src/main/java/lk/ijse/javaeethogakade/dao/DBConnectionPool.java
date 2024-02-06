@@ -13,7 +13,7 @@ public class DBConnectionPool {
         basicDataSource.setUsername("root");
         basicDataSource.setPassword("12345678");
         basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        basicDataSource.setMaxTotal(5);
+        basicDataSource.setMaxTotal(20);
         basicDataSource.setMaxIdle(2);
         basicDataSource.setMaxWaitMillis(-1);
         dataSource = basicDataSource;

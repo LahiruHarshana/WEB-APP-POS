@@ -24,9 +24,18 @@ public class OrderDetailsDAOImpl implements OrderDetailsDAO {
             pstm.setString(2,entity.getOrderID());
             pstm.setInt(3,entity.getQuantity());
             pstm.setDouble(4,entity.getItemPrice());
-            return pstm.executeUpdate() > 0;
+
+            // Execute the update
+            int rowsAffected = pstm.executeUpdate();
+
+            // Close the connection after executing the statement
+            connection.close();
+
+            // Return true if at least one row was affected, otherwise false
+            return rowsAffected > 0;
         }
     }
+
 
     @Override
     public boolean update(OrderDetails entity) throws SQLException, ClassNotFoundException {
