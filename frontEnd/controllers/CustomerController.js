@@ -159,8 +159,13 @@ function deleteCustomer() {
 function searchCustomer() {
     var customerId = $("#cSearchBtn").val();
     $.ajax({
-        type: "GET",
-        url: `http://localhost:8080/check/customer/${customerId}`,
+        method: "GET",
+        url: "http://localhost:8080/check/customer",
+        async: true,
+        dataType: 'json',
+        data: {
+            customerId: customerId
+        },
         success: function (resp) {
             console.log(resp.id);
             $cIdTxt.val(resp.id);
