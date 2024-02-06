@@ -28,7 +28,6 @@ public class PlaceOrderServletAPI extends HttpServlet {
         resp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
         resp.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-        // Let the actual request handler process the request
         resp.setStatus(HttpServletResponse.SC_OK);
     }
     @Override
