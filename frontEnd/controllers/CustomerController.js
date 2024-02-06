@@ -169,7 +169,7 @@ function searchCustomer() {
         success: function (resp) {
             const customer = resp[0];
             $cIdTxt.val(customer.id);
-            $cNameTxt.val();
+            $cNameTxt.val(customer.name);
             $cAddressTxt.val(resp.address);
             $cSalaryText.val(resp.salary);
         },
