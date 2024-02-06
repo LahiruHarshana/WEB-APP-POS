@@ -92,11 +92,17 @@ function searchItem() {
     const searchValue = $("#iSearchTxt").val();
 
     $.ajax({
-        type: "GET",
-        url: `http://localhost:8080/check/item/${searchValue}`,
+        method: "GET",
+        url: "http://localhost:8080/check/item",
+        async: true,
+        dataType: 'json',
+        data: {
+            itemId: searchValue
+        },
         success: function (item) {
             if (item) {
-                $iNameTxt.val(item.description);
+                const items = item[0];
+                $iNameTxt.val(items.description);
                 $iIdTxt.val(item.code);
                 $iPrice.val(item.unitPrice);
                 $iQty.val(item.qtyOnHand);
