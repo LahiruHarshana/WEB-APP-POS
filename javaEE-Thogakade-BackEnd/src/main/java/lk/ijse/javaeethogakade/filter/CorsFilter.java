@@ -28,7 +28,6 @@ public class CorsFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        // Initialization code, if needed
     }
 
     @Override
