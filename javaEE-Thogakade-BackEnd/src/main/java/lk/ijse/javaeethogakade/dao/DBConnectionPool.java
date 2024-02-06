@@ -13,9 +13,7 @@ public class DBConnectionPool {
     static {
         try {
             Context initContext = new InitialContext();
-            Context envContext = (Context) initContext.lookup("java:/comp/env");
-
-            dataSource = (DataSource) envContext.lookup("jdbc/TestThogaKade");
+            dataSource = (DataSource) initContext.lookup("java:/comp/env/jdbc/pos");
         } catch (NamingException e) {
             e.printStackTrace();
         }
