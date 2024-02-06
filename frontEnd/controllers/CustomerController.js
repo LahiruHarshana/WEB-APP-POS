@@ -170,7 +170,7 @@ function searchCustomer() {
             const customer = resp[0];
             $cIdTxt.val(customer.id);
             $cNameTxt.val(customer.name);
-            $cAddressTxt.val(resp.address);
+            $cAddressTxt.val(customer.address);
             $cSalaryText.val(resp.salary);
         },
         error: function (resp) {
