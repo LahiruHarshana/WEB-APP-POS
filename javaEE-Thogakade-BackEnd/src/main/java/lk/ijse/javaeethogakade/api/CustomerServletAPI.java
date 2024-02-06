@@ -65,7 +65,10 @@ public class CustomerServletAPI extends HttpServlet {
         response.setContentType("application/json");
 
         try (Connection connection = DBConnectionPool.getConnection()) {
-            PreparedStatement pstm = connection.prepareStatement();
+            String sql = "SELECT * FROM Customer WHERE cusID=?";
+            PreparedStatement pstm = connection.prepareStatement(sql);
+            pstm.setString(1, customerId);
+            ResultSet rst = pstm.executeQuery();
 
             PrintWriter writer = response.getWriter();
 
@@ -86,7 +89,7 @@ public class CustomerServletAPI extends HttpServlet {
                 customerArray.add(customerObject);
             }
             writer.print(customerArray.build());
-        } catch (ClassNotFoundException | SQLException | IOException e) {
+        } catch ( SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -104,8 +107,6 @@ public class CustomerServletAPI extends HttpServlet {
         }
         try {
             List<CustomerDto> allCustomers = customerBO.getAllCustomers();
-            System.out.println(allCustomers.get(0).getName());
-
             JsonArrayBuilder allCustomersArray = Json.createArrayBuilder();
 
             for (CustomerDto customer : allCustomers) {

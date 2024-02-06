@@ -157,14 +157,13 @@ function deleteCustomer() {
 
 
 function searchCustomer() {
-    var customerId = $cIdTxt.val();
-    console.log("customer id: "+customerId);
-
+    var customerId = $("#cSearchBtn").val();
     $.ajax({
         type: "GET",
         url: `http://localhost:8080/check/customer/${customerId}`,
         success: function (resp) {
-            console.log(resp["name"]);
+            console.log(resp.id);
+            $cIdTxt.val(resp.id);
             $cNameTxt.val(resp.name);
             $cAddressTxt.val(resp.address);
             $cSalaryText.val(resp.salary);
