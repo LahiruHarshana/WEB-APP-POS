@@ -13,6 +13,7 @@ import lk.ijse.javaeethogakade.dto.CustomerDto;
 import lk.ijse.javaeethogakade.dto.ItemDTO;
 import lk.ijse.javaeethogakade.dto.OrderDetailDto;
 import lk.ijse.javaeethogakade.dto.OrderDto;
+import lk.ijse.javaeethogakade.entity.Orders;
 import lk.ijse.javaeethogakade.util.SQLUtil;
 
 import java.io.BufferedReader;
@@ -68,9 +69,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             connection = DBConnection.getDbConnection().getConnection();
             connection.setAutoCommit(false);
 
-            System.out.println(orderDto);
-
-            // Save Order
+            orderDAO.add(new Orders(dto.getOrderID(), dto.getOrderDate(), dto.getCusID()));
             String sqlOrder = "INSERT INTO orders (orderID, orderDate, cusID) VALUES (?, ?, ?)";
             Boolean orderResult = SQLUtil.execute( sqlOrder, orderDto.getOrderID(), orderDto.getOrderDate(), orderDto.getCusID());
             System.out.println(orderResult);

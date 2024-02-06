@@ -57,5 +57,4 @@ public class PlaceOrderServletAPI extends HttpServlet {
 
         }
     }
-    }
 }
