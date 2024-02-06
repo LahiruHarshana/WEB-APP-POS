@@ -28,7 +28,6 @@ public class OrderDetailsDAOImpl implements OrderDetailsDAO {
             int rowsAffected = pstm.executeUpdate();
             connection.close();
 
-            // Return true if at least one row was affected, otherwise false
             return rowsAffected > 0;
         }
     }
