@@ -1,6 +1,7 @@
 package lk.ijse.javaeethogakade.dao.custom.impl;
 
 import lk.ijse.javaeethogakade.dao.custom.OrderDAO;
+import lk.ijse.javaeethogakade.db.DBConnection;
 import lk.ijse.javaeethogakade.entity.Orders;
 
 import java.sql.Connection;
