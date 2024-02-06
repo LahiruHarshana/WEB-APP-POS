@@ -43,7 +43,6 @@ public class PlaceOrderServletAPI extends HttpServlet {
             String line;
             while ((line = reader.readLine()) != null) {
                 jsonInput.append(line);
-                System.out.println("PlaceOrderServletAPI doPost");
             }
             ObjectMapper objectMapper = new ObjectMapper();
             OrderDto orderDto = objectMapper.readValue(jsonInput.toString(), OrderDto.class);
