@@ -5,6 +5,7 @@ import lk.ijse.javaeethogakade.db.DBConnection;
 import lk.ijse.javaeethogakade.entity.Orders;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,8 +22,8 @@ public class OrderDAOImpl implements OrderDAO {
             String sql = "INSERT INTO Orders VALUES(?,?,?)";
             PreparedStatement pstm = connection.prepareStatement(sql);
             pstm.setString(1,entity.getOrderID());
-            pstm.setDate(2,entity.getOrderDate());
-            pstm.setString(3,entity.getCustomerID());
+            pstm.setDate(2, Date.valueOf(entity.getOrderDate()));
+            pstm.setString(3,entity.getCusID());
             return pstm.executeUpdate() > 0;
         }
     }
