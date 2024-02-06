@@ -19,7 +19,6 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 @WebServlet(name = "customerServlet", value = "/customer/*")
 public class CustomerServletAPI extends HttpServlet {
 
