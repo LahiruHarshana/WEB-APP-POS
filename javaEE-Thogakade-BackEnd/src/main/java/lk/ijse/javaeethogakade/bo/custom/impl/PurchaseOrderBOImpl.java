@@ -69,10 +69,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             connection = DBConnection.getDbConnection().getConnection();
             connection.setAutoCommit(false);
 
-            orderDAO.add(new Orders(dto.getOrderID(), dto.getOrderDate(), dto.getCusID()));
-            String sqlOrder = "INSERT INTO orders (orderID, orderDate, cusID) VALUES (?, ?, ?)";
-            Boolean orderResult = SQLUtil.execute( sqlOrder, orderDto.getOrderID(), orderDto.getOrderDate(), orderDto.getCusID());
-            System.out.println(orderResult);
+            Boolean orderResult = orderDAO.add(new Orders(dto.getOrderID(), dto.getOrderDate(), dto.getCusID()));
 
             if (orderResult) {
                 // Save Order Details
