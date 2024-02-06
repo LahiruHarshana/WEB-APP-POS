@@ -49,58 +49,12 @@ public class PlaceOrderServletAPI extends HttpServlet {
             ObjectMapper objectMapper = new ObjectMapper();
             OrderDto orderDto = objectMapper.readValue(jsonInput.toString(), OrderDto.class);
 
-            // Save Order
-            String sqlOrder = "INSERT INTO orders (orderID, orderDate, cusID) VALUES (?, ?, ?)";
-            Boolean orderResult = SQLUtil.execute( sqlOrder, orderDto.getOrderID(), orderDto.getOrderDate(), orderDto.getCusID());
-            System.out.println(orderResult);
+            purchaseOrderBO.purchaseOrder(orderDto);
 
-            if (orderResult) {
-                // Save Order Details
-                for (OrderDetailDto orderDetail : orderDto.getOrderItems()) {
-                    String sqlOrderDetail = "INSERT INTO Order_Detail (itemCode, orderID, quantity, itemPrice) VALUES (?, ?, ?, ?)";
-                    Boolean orderDetailResult = SQLUtil.execute(sqlOrderDetail, orderDetail.getItemCode(), orderDto.getOrderID(), orderDetail.getQuantity(), orderDetail.getItemPrice());
-
-                    if (!orderDetailResult) {
-                        System.out.println("Failed to save order details");
-                        connection.rollback();
-                        resp.getWriter().println("Failed to save order details");
-                        return;
-                    }
-
-                    // Update item quantity in the Items table
-                    String sqlUpdateQuantity = "UPDATE Items SET ItemQuantity = ItemQuantity - ? WHERE ItemCode = ?";
-                    Boolean updateQuantityResult = SQLUtil.execute(sqlUpdateQuantity, orderDetail.getQuantity(), orderDetail.getItemCode());
-
-                    if (!updateQuantityResult) {
-                        connection.rollback();
-                        resp.getWriter().println("Failed to update item quantity");
-                        return;
-                    }
-                }
-
-                connection.commit();
-                resp.getWriter().println("Order, Order Details, and Item Quantity updated successfully");
-            } else {
-                resp.getWriter().println("Failed to save order");
-            }
         } catch (ClassNotFoundException | SQLException e) {
-            if (connection != null) {
-                try {
-                    connection.rollback();
-                } catch (SQLException rollbackException) {
-                    rollbackException.printStackTrace();
-                }
-            }
-            throw new RuntimeException(e);
+            e.printStackTrace();
         } finally {
-            if (connection != null) {
-                try {
-                    connection.setAutoCommit(true);
-                    connection.close();
-                } catch (SQLException closeException) {
-                    closeException.printStackTrace();
-                }
-            }
+
         }
     }
     }
