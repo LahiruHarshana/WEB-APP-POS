@@ -103,7 +103,7 @@ function searchItem() {
             if (item) {
                 const items = item[0];
                 $iNameTxt.val(items.description);
-                $iIdTxt.val(item.code);
+                $iIdTxt.val(items.code);
                 $iPrice.val(item.unitPrice);
                 $iQty.val(item.qtyOnHand);
             } else {
