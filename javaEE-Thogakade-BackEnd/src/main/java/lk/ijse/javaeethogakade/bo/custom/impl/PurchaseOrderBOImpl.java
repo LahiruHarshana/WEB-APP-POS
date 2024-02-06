@@ -106,6 +106,8 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
                 ex.printStackTrace();
             }
             throw new RuntimeException("Error processing purchase order", e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         } finally {
             try {
                 if (connection != null) {

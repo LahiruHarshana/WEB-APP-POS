@@ -38,7 +38,6 @@ public class PlaceOrderServletAPI extends HttpServlet {
         resp.setContentType("text/plain");
 
         try {
-
             BufferedReader reader = req.getReader();
             StringBuilder jsonInput = new StringBuilder();
 
@@ -49,12 +48,21 @@ public class PlaceOrderServletAPI extends HttpServlet {
             ObjectMapper objectMapper = new ObjectMapper();
             OrderDto orderDto = objectMapper.readValue(jsonInput.toString(), OrderDto.class);
 
-            purchaseOrderBO.purchaseOrder(orderDto);
+            Boolean saved = purchaseOrderBO.purchaseOrder(orderDto);
 
-        } catch (ClassNotFoundException | SQLException e) {
+            if (saved) {
+                resp.getWriter().write("Order successfully saved.");
+                resp.setStatus(HttpServletResponse.SC_OK);
+            } else {
+                resp.getWriter().write("Failed to save order.");
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
+
+        } catch (IOException | SQLException | ClassNotFoundException e) {
+            resp.getWriter().write("Error processing request: " + e.getMessage());
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             e.printStackTrace();
-        } finally {
-
         }
     }
+
 }
