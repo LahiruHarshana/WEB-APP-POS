@@ -13,11 +13,6 @@ import lk.ijse.javaeethogakade.bo.custom.CustomerBO;
 import lk.ijse.javaeethogakade.bo.custom.impl.CustomerBOImpl;
 import lk.ijse.javaeethogakade.util.SQLUtil;
 import lk.ijse.javaeethogakade.dto.CustomerDto;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
