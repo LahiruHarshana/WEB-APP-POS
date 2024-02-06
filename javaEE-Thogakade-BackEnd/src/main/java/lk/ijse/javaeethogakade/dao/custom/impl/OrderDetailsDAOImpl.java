@@ -26,7 +26,6 @@ public class OrderDetailsDAOImpl implements OrderDetailsDAO {
             pstm.setInt(3,entity.getQuantity());
             pstm.setDouble(4,entity.getItemPrice());
             int rowsAffected = pstm.executeUpdate();
-
             connection.close();
 
             // Return true if at least one row was affected, otherwise false
