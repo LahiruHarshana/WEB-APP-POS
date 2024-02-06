@@ -102,10 +102,10 @@ function searchItem() {
         success: function (item) {
             if (item) {
                 const items = item[0];
-                $iNameTxt.val(items.description);
-                $iIdTxt.val(items.code);
-                $iPrice.val(items.unitPrice);
-                $iQty.val(items.qtyOnHand);
+                $("#iID").val(items.code);
+                $("#IIName").val(items.description);
+                $("#i-Price").val(items.unitPrice);
+                $("#Iqty").val(items.qtyOnHand);
             } else {
                 alert("Item not found.");
             }
