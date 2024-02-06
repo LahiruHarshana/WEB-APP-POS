@@ -76,8 +76,8 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             if (orderResult) {
                 // Save Order Details
                 for (OrderDetailDto orderDetail : orderDto.getOrderItems()) {
-                    OrderDetails orderDetails = new OrderDetails(orderDetail.getOrderID(), orderDetail.getItemCode(), orderDetail.getQuantity(), orderDetail.getItemPrice());
-                    Boolean orderDetailResult = orderDetailsDAO.add(orderDetails);
+
+                    Boolean orderDetailResult = orderDetailsDAO.add(new OrderDetails(orderDetail.getOrderID(), orderDetail.getItemCode(), orderDetail.getQuantity(), orderDetail.getItemPrice()));
 
                     if (!orderDetailResult) {
                         System.out.println("Failed to save order details");
