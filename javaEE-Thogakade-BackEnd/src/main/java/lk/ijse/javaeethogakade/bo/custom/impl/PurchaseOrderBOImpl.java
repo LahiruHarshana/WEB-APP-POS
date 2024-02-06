@@ -13,6 +13,7 @@ import lk.ijse.javaeethogakade.dto.CustomerDto;
 import lk.ijse.javaeethogakade.dto.ItemDTO;
 import lk.ijse.javaeethogakade.dto.OrderDetailDto;
 import lk.ijse.javaeethogakade.dto.OrderDto;
+import lk.ijse.javaeethogakade.entity.OrderDetails;
 import lk.ijse.javaeethogakade.entity.Orders;
 import lk.ijse.javaeethogakade.util.SQLUtil;
 
@@ -70,12 +71,13 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             connection.setAutoCommit(false);
 
             Boolean orderResult = orderDAO.add(new Orders(dto.getOrderID(), dto.getOrderDate(), dto.getCusID()));
+            OrderDto orderDto = new OrderDto(dto.getOrderID(), dto.getOrderDate(), dto.getCusID(), dto.getOrderItems());
 
             if (orderResult) {
                 // Save Order Details
                 for (OrderDetailDto orderDetail : orderDto.getOrderItems()) {
-                    String sqlOrderDetail = "INSERT INTO Order_Detail (itemCode, orderID, quantity, itemPrice) VALUES (?, ?, ?, ?)";
-                    Boolean orderDetailResult = SQLUtil.execute(sqlOrderDetail, orderDetail.getItemCode(), orderDto.getOrderID(), orderDetail.getQuantity(), orderDetail.getItemPrice());
+                    OrderDetails orderDetails = new OrderDetails(orderDetail.getOrderID(), orderDetail.getItemCode(), orderDetail.getQuantity(), orderDetail.getItemPrice());
+                    Boolean orderDetailResult = orderDetailsDAO.add(orderDetails);
 
                     if (!orderDetailResult) {
                         System.out.println("Failed to save order details");
