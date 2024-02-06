@@ -23,7 +23,6 @@ public class PlaceOrderServletAPI extends HttpServlet {
 
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Pre-flight request handling
         resp.setHeader("Access-Control-Allow-Origin", "*");
         resp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
         resp.setHeader("Access-Control-Allow-Headers", "Content-Type");
