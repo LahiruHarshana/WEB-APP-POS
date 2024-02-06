@@ -5,6 +5,7 @@ import lk.ijse.javaeethogakade.db.DBConnection;
 import lk.ijse.javaeethogakade.entity.OrderDetails;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
