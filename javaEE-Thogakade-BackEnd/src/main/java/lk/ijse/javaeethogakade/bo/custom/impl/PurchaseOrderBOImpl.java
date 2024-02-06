@@ -65,9 +65,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
 
     @Override
     public boolean purchaseOrder(OrderDto dto) {
-        Connection connection = null;
-        try {
-            connection = DBConnection.getDbConnection().getConnection();
+        try (Connection connection = DBConnection.getDbConnection().getConnection()) {
             connection.setAutoCommit(false);
 
             Boolean orderResult = orderDAO.add(new Orders(dto.getOrderID(), dto.getOrderDate(), dto.getCusID()));
@@ -97,28 +95,11 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
                 connection.rollback();
                 return false; // Rollback due to order failure
             }
-        } catch (SQLException | ClassNotFoundException e) {
-            try {
-                if (connection != null) {
-                    connection.rollback();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            throw new RuntimeException("Error processing purchase order", e);
         } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.setAutoCommit(true);
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            throw new RuntimeException("Error processing purchase order", e);
         }
     }
+
 
     @Override
     public ItemDTO findItem(String code) throws SQLException, ClassNotFoundException {
