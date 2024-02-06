@@ -62,19 +62,13 @@ public class CustomerServletAPI extends HttpServlet {
     }
     private void getAll(String customerId, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
         response.setContentType("application/json");
 
         try (Connection connection = DBConnectionPool.getConnection()) {
-            PreparedStatement pstm = connection.prepareStatement("SELECT * FROM Customer WHERE cusID=?");
-            pstm.setObject(1, customerId);
-            ResultSet rst = pstm.executeQuery();
-
 
             PrintWriter writer = response.getWriter();
 
-            JsonArrayBuilder allCustomer = Json.createArrayBuilder();
+            JsonArrayBuilder customerArray = Json.createArrayBuilder();
 
             while (rst.next()) {
                 String id = rst.getString("cusID");
@@ -82,16 +76,15 @@ public class CustomerServletAPI extends HttpServlet {
                 String address = rst.getString("cusAddress");
                 double salary = rst.getDouble("cusSalary");
 
-                JsonObjectBuilder customer = Json.createObjectBuilder();
+                JsonObjectBuilder customerObject = Json.createObjectBuilder()
+                        .add("id", id)
+                        .add("name", name)
+                        .add("address", address)
+                        .add("salary", salary);
 
-                customer.add("id", id);
-                customer.add("name", name);
-                customer.add("address", address);
-                customer.add("salary", salary);
-
-                allCustomer.add(customer.build());
+                customerArray.add(customerObject);
             }
-            writer.print(allCustomer.build());
+            writer.print(customerArray.build());
         } catch (ClassNotFoundException | SQLException | IOException e) {
             throw new RuntimeException(e);
         }
