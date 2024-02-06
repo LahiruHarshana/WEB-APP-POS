@@ -21,7 +21,7 @@ public class OrderDetailsDAOImpl implements OrderDetailsDAO {
             String sql = "INSERT INTO OrderDetails VALUES(?,?,?,?)";
             PreparedStatement pstm = connection.prepareStatement(sql);
             pstm.setString(1,entity.getItemCode());
-            pstm.setString(2,entity.getItemCode());
+            pstm.setString(2,entity.getOrderID());
             pstm.setInt(3,entity.getQuantity());
             pstm.setDouble(4,entity.getItemPrice());
             return pstm.executeUpdate() > 0;
