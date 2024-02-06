@@ -70,11 +70,10 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             connection.setAutoCommit(false);
 
             Boolean orderResult = orderDAO.add(new Orders(dto.getOrderID(), dto.getOrderDate(), dto.getCusID()));
-            OrderDto orderDto = new OrderDto(dto.getOrderID(), dto.getOrderDate(), dto.getCusID(), dto.getOrderItems());
 
             if (orderResult) {
                 // Save Order Details
-                for (OrderDetailDto orderDetail : orderDto.getOrderItems()) {
+                for (OrderDetailDto orderDetail : dto.getOrderItems()) {
                     Boolean orderDetailResult = orderDetailsDAO.add(new OrderDetails(orderDetail.getItemCode(), orderDetail.getOrderID(), orderDetail.getQuantity(), orderDetail.getItemPrice()));
 
                     if (!orderDetailResult) {
@@ -97,7 +96,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
                 return false; // Rollback due to order failure
             }
         } catch (Exception e) {
-            e.printStackTrace(); // Log the exception for debugging
+
             throw new RuntimeException("Error processing purchase order", e);
         }
     }

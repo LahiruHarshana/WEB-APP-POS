@@ -1,5 +1,6 @@
 package lk.ijse.javaeethogakade.dao.custom.impl;
 
+import lk.ijse.javaeethogakade.dao.DBConnectionPool;
 import lk.ijse.javaeethogakade.dao.custom.OrderDetailsDAO;
 import lk.ijse.javaeethogakade.db.DBConnection;
 import lk.ijse.javaeethogakade.entity.OrderDetails;
@@ -17,18 +18,15 @@ public class OrderDetailsDAOImpl implements OrderDetailsDAO {
 
     @Override
     public boolean add(OrderDetails entity) throws SQLException, ClassNotFoundException {
-        try(Connection connection = DBConnection.getDbConnection().getConnection()){
+        try(Connection connection = DBConnectionPool.getConnection()){
             String sql = "INSERT INTO Order_Detail VALUES(?,?,?,?)";
             PreparedStatement pstm = connection.prepareStatement(sql);
             pstm.setString(1,entity.getItemCode());
             pstm.setString(2,entity.getOrderID());
             pstm.setInt(3,entity.getQuantity());
             pstm.setDouble(4,entity.getItemPrice());
-
-            // Execute the update
             int rowsAffected = pstm.executeUpdate();
 
-            // Close the connection after executing the statement
             connection.close();
 
             // Return true if at least one row was affected, otherwise false
