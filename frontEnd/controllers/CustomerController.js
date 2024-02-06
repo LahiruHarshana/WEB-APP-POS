@@ -72,7 +72,6 @@ function updateCustomerTable(){
                 let name = customers[i].name;
                 let address = customers[i].address;
                 let salary = customers[i].salary;
-                console.log("id: "+id+" name: "+name+" address: "+address+" salary: "+salary);
                 let row = `<tr><td>${id}</td><td>${name}</td><td>${address}</td><td>${salary}</td></tr>`;
                 $("#tblCustomer").append(row);
             }
