@@ -97,8 +97,8 @@ public class ItemDAOImpl implements ItemDAO {
     public Boolean updateQty(String id,int qty) throws Exception {
         try(Connection connection = DBConnectionPool.getConnection()){
             PreparedStatement pstm = connection.prepareStatement("UPDATE Items SET ItemQuantity=ItemQuantity-? WHERE ItemCode=?");
-            pstm.setObject(1,qty);
-            pstm.setObject(2,id);
+            pstm.setInt(1,qty);
+            pstm.setString(2,id);
             return pstm.executeUpdate()>0;
         }
     }
