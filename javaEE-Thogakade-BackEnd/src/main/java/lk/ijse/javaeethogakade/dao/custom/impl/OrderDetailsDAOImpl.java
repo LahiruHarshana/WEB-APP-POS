@@ -23,7 +23,7 @@ public class OrderDetailsDAOImpl implements OrderDetailsDAO {
             pstm.setString(1,entity.getOrderID());
             pstm.setString(2,entity.getItemCode());
             pstm.setInt(3,entity.getQuantity());
-            pstm.setDouble(4,entity.getUnitPrice());
+            pstm.setDouble(4,entity.getItemPrice());
             return pstm.executeUpdate() > 0;
         }
     }
