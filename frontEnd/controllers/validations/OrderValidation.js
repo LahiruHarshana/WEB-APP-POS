@@ -23,7 +23,6 @@ var validation10;
 var validation11;
 
 
-
     $("#oId").keyup(function (e) {
         let value = $("#oId").val();
         if (value.length == 0) {
@@ -491,8 +490,6 @@ export function validated11() {
             }
         }
     }
-
-
     function balanceCheck() {
 
         var balance = parseInt($("#orderBalanceTxt").val());

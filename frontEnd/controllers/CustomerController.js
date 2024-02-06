@@ -1,3 +1,4 @@
+
 var customerFormVar =document.querySelector("#customerForm");
 var itemFormVar =document.querySelector("#itemForm");
 var orderrFormVar =document.querySelector("#orderForm");
@@ -71,7 +72,7 @@ function updateCustomerTable(){
                 let name = customers[i].name;
                 let address = customers[i].address;
                 let salary = customers[i].salary;
-
+                console.log("id: "+id+" name: "+name+" address: "+address+" salary: "+salary);
                 let row = `<tr><td>${id}</td><td>${name}</td><td>${address}</td><td>${salary}</td></tr>`;
                 $("#tblCustomer").append(row);
             }
@@ -94,7 +95,6 @@ $("#cDeleteBtn").click(() => {
 });
 
 $("#cSearchBtn").click(function () {
-    searchCustomer();
 });
 
 function saveCustomer(){
@@ -163,22 +163,5 @@ function clearForm() {
     $cSalaryText.val("");
 }
 
-function searchCustomer() {
-    const searchValue = $("#cSearchTxt").val();
-
-    $.ajax({
-        type: "GET",
-        url: `http://localhost:8080/check/customer/${searchValue}`,
-        success: function (resp) {
-            $cIdTxt.val(resp.id);
-            $cNameTxt.val(resp.name);
-            $cAddressTxt.val(resp.address);
-            $cSalaryText.val(resp.salary);
-        },
-        error: function (resp) {
-            alert("Failed to find the customer");
-        }
-    });
-}
 export { saveCustomer, updateCustomer ,deleteCustomer };
 

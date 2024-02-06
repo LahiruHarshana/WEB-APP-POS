@@ -105,6 +105,7 @@ public class CustomerServletAPI extends HttpServlet {
         }
         try {
             List<CustomerDto> allCustomers = customerBO.getAllCustomers();
+            System.out.println(allCustomers.get(0).getName());
 
             JsonArrayBuilder allCustomersArray = Json.createArrayBuilder();
 
@@ -116,7 +117,6 @@ public class CustomerServletAPI extends HttpServlet {
                         .add("salary", customer.getSalary());
                 allCustomersArray.add(customerObject);
             }
-
             PrintWriter writer = response.getWriter();
             writer.print(allCustomersArray.build());
         } catch (ClassNotFoundException | SQLException e) {

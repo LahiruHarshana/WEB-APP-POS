@@ -91,11 +91,6 @@ function updateItemTable() {
 function searchItem() {
     const searchValue = $("#iSearchTxt").val();
 
-    if (searchValue.trim() === "") {
-        alert("Please enter a valid Item ID to search.");
-        return;
-    }
-
     $.ajax({
         type: "GET",
         url: `http://localhost:8080/check/item/${searchValue}`,
@@ -115,7 +110,6 @@ function searchItem() {
     });
 }
 $("#iSearchBtn").click(searchItem);
-
 
 function saveItem() {
     var item = {
