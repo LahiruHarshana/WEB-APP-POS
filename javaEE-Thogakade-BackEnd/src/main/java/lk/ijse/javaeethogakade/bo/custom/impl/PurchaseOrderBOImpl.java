@@ -68,19 +68,6 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             connection = DBConnection.getDbConnection().getConnection();
             connection.setAutoCommit(false);
 
-            System.out.println("PlaceOrderServletAPI doPost");
-
-            BufferedReader reader = req.getReader();
-            StringBuilder jsonInput = new StringBuilder();
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                jsonInput.append(line);
-                System.out.println("PlaceOrderServletAPI doPost");
-            }
-            ObjectMapper objectMapper = new ObjectMapper();
-            OrderDto orderDto = objectMapper.readValue(jsonInput.toString(), OrderDto.class);
-
             System.out.println(orderDto);
 
             // Save Order
