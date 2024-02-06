@@ -64,5 +64,4 @@ public class PlaceOrderServletAPI extends HttpServlet {
             e.printStackTrace();
         }
     }
-
 }

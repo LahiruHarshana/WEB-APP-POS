@@ -16,7 +16,6 @@ public class DBConnectionPool {
         basicDataSource.setMaxTotal(5);
         basicDataSource.setMaxIdle(2);
         basicDataSource.setMaxWaitMillis(-1);
-
         dataSource = basicDataSource;
     }
 

@@ -97,9 +97,11 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
                 return false; // Rollback due to order failure
             }
         } catch (Exception e) {
+            e.printStackTrace(); // Log the exception for debugging
             throw new RuntimeException("Error processing purchase order", e);
         }
     }
+
 
 
     @Override

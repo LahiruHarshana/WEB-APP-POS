@@ -68,20 +68,17 @@ public class CustomerServletAPI extends HttpServlet {
         response.setHeader("Access-Control-Allow-Headers", "Content-Type");
         response.setStatus(HttpServletResponse.SC_OK);
     }
-
     private void getAll(String customerId, HttpServletResponse response) {
-        response.addHeader("Access-Control-Allow-Origin", "http://localhost:63342");
-        response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-        response.addHeader("Access-Control-Allow-Headers", "Content-Type");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
         response.setContentType("application/json");
 
-        try (Connection connection = DBConnectionPool.getConnection()){
-
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Customer WHERE cusID=?");
+        try {
+            String sql = "SELECT * FROM customer WHERE cusID=?";
+            ResultSet rst = SQLUtil.execute(sql, customerId);
 
             PrintWriter writer = response.getWriter();
-            response.setContentType("application/json"); // Set content type explicitly
-            response.addHeader("Access-Control-Allow-Origin", "*");
 
             JsonArrayBuilder allCustomer = Json.createArrayBuilder();
 
@@ -106,14 +103,11 @@ public class CustomerServletAPI extends HttpServlet {
         }
     }
 
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.addHeader("Access-Control-Allow-Origin", "http://localhost:63342");
-        response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        response.addHeader("Access-Control-Allow-Headers", "Content-Type");
-        response.addHeader("Access-Control-Max-Age", "3600");
         response.setContentType("application/json");
-
+        response.setHeader("Access-Control-Allow-Origin", "*");
 
         String customerId = request.getParameter("customerId");
         if (customerId != null) {
@@ -123,33 +117,23 @@ public class CustomerServletAPI extends HttpServlet {
         try {
             List<CustomerDto> allCustomers = customerBO.getAllCustomers();
 
-            PrintWriter writer = response.getWriter();
-            response.setContentType("application/json");
+            JsonArrayBuilder allCustomersArray = Json.createArrayBuilder();
 
-            JsonArrayBuilder allCustomer = Json.createArrayBuilder();
-
-            for (CustomerDto c : allCustomers) {
-                String id = c.getId();
-                String name = c.getName();
-                String address = c.getAddress();
-                double salary = c.getSalary();
-
-                JsonObjectBuilder customer = Json.createObjectBuilder();
-
-                customer.add("id", id);
-                customer.add("name", name);
-                customer.add("address", address);
-                customer.add("salary", salary);
-
-                allCustomer.add(customer.build());
+            for (CustomerDto customer : allCustomers) {
+                JsonObjectBuilder customerObject = Json.createObjectBuilder()
+                        .add("id", customer.getId())
+                        .add("name", customer.getName())
+                        .add("address", customer.getAddress())
+                        .add("salary", customer.getSalary());
+                allCustomersArray.add(customerObject);
             }
-            writer.print(allCustomer.build());
+
+            PrintWriter writer = response.getWriter();
+            writer.print(allCustomersArray.build());
         } catch (ClassNotFoundException | SQLException e) {
             throw new ServletException("Error in doGet method", e);
         }
     }
-
-
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");
