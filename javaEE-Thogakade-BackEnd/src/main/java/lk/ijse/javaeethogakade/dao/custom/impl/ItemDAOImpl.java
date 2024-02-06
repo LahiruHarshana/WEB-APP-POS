@@ -95,6 +95,17 @@ public class ItemDAOImpl implements ItemDAO {
 
     @Override
     public String updateQty(String id) throws Exception {
-        return null;
+        try (Connection connection = DBConnectionPool.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT ItemQuantity FROM Items WHERE ItemCode=?");
+            preparedStatement.setString(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int qty = resultSet.getInt(1);
+            if (qty > 0) {
+                return "true";
+            } else {
+                return "false";
+            }
+        }
     }
 }
