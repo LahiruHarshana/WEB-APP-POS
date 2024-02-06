@@ -16,7 +16,6 @@ public class DBConnectionPool {
             Context initContext = new InitialContext();
             Context envContext = (Context) initContext.lookup("java:/comp/env");
 
-            // Look up the data source by JNDI name
             dataSource = (DataSource) envContext.lookup("jdbc/TestThogaKade");
         } catch (NamingException e) {
             e.printStackTrace(); // Handle exception appropriately
