@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lk.ijse.javaeethogakade.bo.custom.PurchaseOrderBO;
 import lk.ijse.javaeethogakade.dto.OrderDetailDto;
 import lk.ijse.javaeethogakade.dto.OrderDto;
 import lk.ijse.javaeethogakade.util.SQLUtil;
@@ -18,6 +19,8 @@ import java.sql.SQLException;
 
 @WebServlet(name = "PlaceOrderServletAPI", urlPatterns = "/order/*")
 public class PlaceOrderServletAPI extends HttpServlet {
+
+    PurchaseOrderBO purchaseOrderBO = new PurchaseOrderBOImpl();
 
 
 
@@ -46,8 +49,6 @@ public class PlaceOrderServletAPI extends HttpServlet {
             }
             ObjectMapper objectMapper = new ObjectMapper();
             OrderDto orderDto = objectMapper.readValue(jsonInput.toString(), OrderDto.class);
-
-            System.out.println(orderDto);
 
             // Save Order
             String sqlOrder = "INSERT INTO orders (orderID, orderDate, cusID) VALUES (?, ?, ?)";
