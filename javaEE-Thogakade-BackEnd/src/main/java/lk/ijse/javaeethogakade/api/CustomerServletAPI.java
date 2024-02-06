@@ -65,6 +65,7 @@ public class CustomerServletAPI extends HttpServlet {
         response.setContentType("application/json");
 
         try (Connection connection = DBConnectionPool.getConnection()) {
+            PreparedStatement pstm = connection.prepareStatement();
 
             PrintWriter writer = response.getWriter();
 
