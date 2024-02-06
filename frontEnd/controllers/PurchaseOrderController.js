@@ -76,7 +76,6 @@ $("#selectCustomerId").change(function () {
         success: function (resp) {
             if (Array.isArray(resp) && resp.length > 0) {
                 const customer = resp[0];
-
                 $("#oCName").val(customer.name);
                 $("#CustomerIDORderForm").val(customer.id);
                 $("#oCAddress").val(customer.address);

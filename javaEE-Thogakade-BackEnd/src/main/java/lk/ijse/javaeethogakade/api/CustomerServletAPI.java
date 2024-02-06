@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.ijse.javaeethogakade.bo.custom.CustomerBO;
 import lk.ijse.javaeethogakade.bo.custom.impl.CustomerBOImpl;
+import lk.ijse.javaeethogakade.dao.DBConnectionPool;
+import lk.ijse.javaeethogakade.db.DBConnection;
 import lk.ijse.javaeethogakade.entity.Customer;
 import lk.ijse.javaeethogakade.util.SQLUtil;
 import lk.ijse.javaeethogakade.dto.CustomerDto;
@@ -23,6 +25,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -67,23 +70,37 @@ public class CustomerServletAPI extends HttpServlet {
     }
 
     private void getAll(String customerId, HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "http://localhost:63342");
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+        response.addHeader("Access-Control-Allow-Headers", "Content-Type");
         response.setContentType("application/json");
-        try {
 
-            CustomerDto customerDto = customerBO.searchCustomer(customerId);
-            if (customerDto != null) {
+        try (Connection connection = DBConnectionPool.getConnection()){
+
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Customer WHERE cusID=?");
+
+            PrintWriter writer = response.getWriter();
+            response.setContentType("application/json"); // Set content type explicitly
+            response.addHeader("Access-Control-Allow-Origin", "*");
+
+            JsonArrayBuilder allCustomer = Json.createArrayBuilder();
+
+            while (rst.next()) {
+                String id = rst.getString("cusID");
+                String name = rst.getString("cusName");
+                String address = rst.getString("cusAddress");
+                double salary = rst.getDouble("cusSalary");
+
                 JsonObjectBuilder customer = Json.createObjectBuilder();
-                customer.add("id", customerDto.getId());
-                customer.add("name", customerDto.getName());
-                customer.add("address", customerDto.getAddress());
-                customer.add("salary", customerDto.getSalary());
 
-                PrintWriter writer = response.getWriter();
-                writer.print(customer.build());
-            } else {
-                PrintWriter writer = response.getWriter();
-                writer.print("Customer not found");
+                customer.add("id", id);
+                customer.add("name", name);
+                customer.add("address", address);
+                customer.add("salary", salary);
+
+                allCustomer.add(customer.build());
             }
+            writer.print(allCustomer.build());
         } catch (ClassNotFoundException | SQLException | IOException e) {
             throw new RuntimeException(e);
         }

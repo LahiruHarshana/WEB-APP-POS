@@ -2,6 +2,7 @@ package lk.ijse.javaeethogakade.bo.custom.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lk.ijse.javaeethogakade.bo.custom.PurchaseOrderBO;
+import lk.ijse.javaeethogakade.dao.DBConnectionPool;
 import lk.ijse.javaeethogakade.dao.custom.ItemDAO;
 import lk.ijse.javaeethogakade.dao.custom.OrderDAO;
 import lk.ijse.javaeethogakade.dao.custom.OrderDetailsDAO;
@@ -65,7 +66,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
 
     @Override
     public boolean purchaseOrder(OrderDto dto) {
-        try (Connection connection = DBConnection.getDbConnection().getConnection()) {
+        try (Connection connection = DBConnectionPool.getConnection()) {
             connection.setAutoCommit(false);
 
             Boolean orderResult = orderDAO.add(new Orders(dto.getOrderID(), dto.getOrderDate(), dto.getCusID()));
