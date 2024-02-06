@@ -159,6 +159,7 @@ function deleteCustomer() {
 
 function searchCustomer() {
     var customerId = $cIdTxt.val();
+    console.log("customer id: "+customerId);
 
     $.ajax({
         type: "GET",
