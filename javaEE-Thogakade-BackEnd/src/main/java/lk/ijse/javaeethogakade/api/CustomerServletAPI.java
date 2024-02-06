@@ -11,9 +11,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.ijse.javaeethogakade.bo.custom.CustomerBO;
 import lk.ijse.javaeethogakade.bo.custom.impl.CustomerBOImpl;
-import lk.ijse.javaeethogakade.dao.DBConnectionPool;
-import lk.ijse.javaeethogakade.db.DBConnection;
-import lk.ijse.javaeethogakade.entity.Customer;
 import lk.ijse.javaeethogakade.util.SQLUtil;
 import lk.ijse.javaeethogakade.dto.CustomerDto;
 
