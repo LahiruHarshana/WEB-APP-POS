@@ -27,7 +27,6 @@ public class OrderDetailsDAOImpl implements OrderDetailsDAO {
             pstm.setDouble(4,entity.getItemPrice());
             int rowsAffected = pstm.executeUpdate();
             connection.close();
-
             return rowsAffected > 0;
         }
     }
