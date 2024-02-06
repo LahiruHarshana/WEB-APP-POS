@@ -98,7 +98,6 @@ public class ItemDAOImpl implements ItemDAO {
         try(Connection connection = DBConnectionPool.getConnection()){
             System.out.println("ItemDAOImpl: " + id + " " + qty);
             PreparedStatement pstm = connection.prepareStatement("UPDATE Items SET ItemQuantity=ItemQuantity-? WHERE ItemCode=?");
-
             pstm.setInt(1,qty);
             pstm.setString(2,id);
             return pstm.executeUpdate()>0;
