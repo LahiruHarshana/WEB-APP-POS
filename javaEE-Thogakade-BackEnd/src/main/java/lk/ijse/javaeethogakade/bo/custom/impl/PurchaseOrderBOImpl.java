@@ -16,6 +16,7 @@ import lk.ijse.javaeethogakade.dto.OrderDto;
 import lk.ijse.javaeethogakade.util.SQLUtil;
 
 import java.io.BufferedReader;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -62,6 +63,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
 
     @Override
     public boolean purchaseOrder(OrderDto dto) throws SQLException, ClassNotFoundException {
+        Connection connection = null;
         try {
             connection = DBConnection.getDbConnection().getConnection();
             connection.setAutoCommit(false);
