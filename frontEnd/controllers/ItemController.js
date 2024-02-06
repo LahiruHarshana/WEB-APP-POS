@@ -105,7 +105,7 @@ function searchItem() {
                 $iNameTxt.val(items.description);
                 $iIdTxt.val(items.code);
                 $iPrice.val(items.unitPrice);
-                $iQty.val(item.qtyOnHand);
+                $iQty.val(items.qtyOnHand);
             } else {
                 alert("Item not found.");
             }
