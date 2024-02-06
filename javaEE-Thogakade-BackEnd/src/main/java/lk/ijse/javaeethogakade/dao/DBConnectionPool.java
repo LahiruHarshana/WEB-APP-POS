@@ -18,7 +18,7 @@ public class DBConnectionPool {
 
             dataSource = (DataSource) envContext.lookup("jdbc/TestThogaKade");
         } catch (NamingException e) {
-            e.printStackTrace(); // Handle exception appropriately
+            e.printStackTrace();
         }
     }
     public static Connection getConnection() throws SQLException {
