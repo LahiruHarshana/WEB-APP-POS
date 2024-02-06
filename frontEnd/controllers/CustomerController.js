@@ -171,7 +171,7 @@ function searchCustomer() {
             $cIdTxt.val(customer.id);
             $cNameTxt.val(customer.name);
             $cAddressTxt.val(customer.address);
-            $cSalaryText.val(resp.salary);
+            $cSalaryText.val(customer.salary);
         },
         error: function (resp) {
             alert("Failed to find the customer");
