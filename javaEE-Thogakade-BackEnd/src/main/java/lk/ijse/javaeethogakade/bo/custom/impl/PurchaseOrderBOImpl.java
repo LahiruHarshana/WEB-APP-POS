@@ -2,6 +2,7 @@ package lk.ijse.javaeethogakade.bo.custom.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lk.ijse.javaeethogakade.bo.custom.PurchaseOrderBO;
+import lk.ijse.javaeethogakade.dao.custom.ItemDAO;
 import lk.ijse.javaeethogakade.dao.custom.OrderDAO;
 import lk.ijse.javaeethogakade.dao.custom.OrderDetailsDAO;
 import lk.ijse.javaeethogakade.dao.custom.impl.OrderDAOImpl;
@@ -21,6 +22,8 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
 
     OrderDAO orderDAO = new OrderDAOImpl();
     OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAOImpl();
+
+    ItemDAO itemDAO = new ItemDAOImpl();
     @Override
     public CustomerDto searchCustomer(String id) throws SQLException, ClassNotFoundException {
         return null;
