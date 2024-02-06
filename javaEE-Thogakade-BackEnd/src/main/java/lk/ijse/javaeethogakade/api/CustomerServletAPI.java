@@ -11,11 +11,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.ijse.javaeethogakade.bo.custom.CustomerBO;
 import lk.ijse.javaeethogakade.bo.custom.impl.CustomerBOImpl;
+import lk.ijse.javaeethogakade.dao.DBConnectionPool;
 import lk.ijse.javaeethogakade.util.SQLUtil;
 import lk.ijse.javaeethogakade.dto.CustomerDto;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -63,9 +66,11 @@ public class CustomerServletAPI extends HttpServlet {
         response.setHeader("Access-Control-Allow-Headers", "Content-Type");
         response.setContentType("application/json");
 
-        try {
-            String sql = "SELECT * FROM customer WHERE cusID=?";
-            ResultSet rst = SQLUtil.execute(sql, customerId);
+        try (Connection connection = DBConnectionPool.getConnection()) {
+            PreparedStatement pstm = connection.prepareStatement("SELECT * FROM Customer WHERE cusID=?");
+            pstm.setObject(1, customerId);
+            ResultSet rst = pstm.executeQuery();
+
 
             PrintWriter writer = response.getWriter();
 

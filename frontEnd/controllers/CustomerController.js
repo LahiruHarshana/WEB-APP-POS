@@ -164,6 +164,7 @@ function searchCustomer() {
         type: "GET",
         url: `http://localhost:8080/check/customer/${customerId}`,
         success: function (resp) {
+            console.log(resp["name"]);
             $cNameTxt.val(resp.name);
             $cAddressTxt.val(resp.address);
             $cSalaryText.val(resp.salary);
