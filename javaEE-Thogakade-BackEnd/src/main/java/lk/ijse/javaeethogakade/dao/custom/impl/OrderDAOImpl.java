@@ -26,7 +26,6 @@ public class OrderDAOImpl implements OrderDAO {
             pstm.setDate(2, entity.getOrderDate());
             pstm.setString(3,entity.getCusID());
             int rowsAffected = pstm.executeUpdate();
-            connection.close();
             return rowsAffected > 0;
         }
     }
