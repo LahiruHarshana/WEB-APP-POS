@@ -64,7 +64,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
     }
 
     @Override
-    public boolean purchaseOrder(OrderDto dto) throws SQLException, ClassNotFoundException {
+    public boolean purchaseOrder(OrderDto dto) {
         Connection connection = null;
         try {
             connection = DBConnection.getDbConnection().getConnection();
@@ -76,7 +76,6 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             if (orderResult) {
                 // Save Order Details
                 for (OrderDetailDto orderDetail : orderDto.getOrderItems()) {
-
                     Boolean orderDetailResult = orderDetailsDAO.add(new OrderDetails(orderDetail.getOrderID(), orderDetail.getItemCode(), orderDetail.getQuantity(), orderDetail.getItemPrice()));
 
                     if (!orderDetailResult) {
@@ -92,31 +91,29 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
                         return false;
                     }
                 }
-
                 connection.commit();
+                return true; // Commit successful
             } else {
-        connection.rollback();
-        return false;
+                connection.rollback();
+                return false; // Rollback due to order failure
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            if (connection != null) {
-                try {
+        } catch (SQLException | ClassNotFoundException e) {
+            try {
+                if (connection != null) {
                     connection.rollback();
-                } catch (SQLException rollbackException) {
-                    rollbackException.printStackTrace();
                 }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
-            throw new RuntimeException(e);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error processing purchase order", e);
         } finally {
-            if (connection != null) {
-                try {
+            try {
+                if (connection != null) {
                     connection.setAutoCommit(true);
                     connection.close();
-                } catch (SQLException closeException) {
-                    closeException.printStackTrace();
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
