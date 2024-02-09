@@ -178,6 +178,16 @@ public class CustomerServletAPI extends HttpServlet {
                 validationErrors.add("Salary is required.");
             }
 
+            if (!validationErrors.isEmpty()) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                response.getWriter().println("Validation errors:");
+                for (String error : validationErrors) {
+                    response.getWriter().println("- " + error);
+                }
+                validationErrors.clear();
+                return;
+            }
+
             Boolean result = customerBO.updateCustomer(customerDto);
             if (result) {
                 response.getWriter().println("Customer has been updated successfully");
