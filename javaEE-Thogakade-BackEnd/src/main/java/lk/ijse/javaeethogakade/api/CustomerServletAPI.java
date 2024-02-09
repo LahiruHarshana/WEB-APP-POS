@@ -30,6 +30,9 @@ public class CustomerServletAPI extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("text/plain");
+
+        List<String> validationErrors = new ArrayList<>();
+
         try {
             BufferedReader reader = request.getReader();
             StringBuilder jsonInput = new StringBuilder();
