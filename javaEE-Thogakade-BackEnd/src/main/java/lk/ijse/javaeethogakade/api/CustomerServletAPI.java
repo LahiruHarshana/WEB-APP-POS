@@ -62,6 +62,7 @@ public class CustomerServletAPI extends HttpServlet {
                 for (String error : validationErrors) {
                     response.getWriter().println("- " + error);
                 }
+                validationErrors.clear();
                 return;
             }
 
