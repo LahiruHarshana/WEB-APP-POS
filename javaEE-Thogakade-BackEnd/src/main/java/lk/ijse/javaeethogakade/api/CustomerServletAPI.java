@@ -152,6 +152,7 @@ public class CustomerServletAPI extends HttpServlet {
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("text/plain");
+        ArrayList<String> validationErrors = new ArrayList<>();
         try {
             BufferedReader reader = request.getReader();
             StringBuilder jsonInput = new StringBuilder();
@@ -163,6 +164,19 @@ public class CustomerServletAPI extends HttpServlet {
 
             ObjectMapper objectMapper = new ObjectMapper();
             CustomerDto customerDto = objectMapper.readValue(jsonInput.toString(), CustomerDto.class);
+
+            if (customerDto.getId() == null || customerDto.getId().isEmpty()) {
+                validationErrors.add("Customer ID is required.");
+            }
+            if (customerDto.getName() == null || customerDto.getName().isEmpty()) {
+                validationErrors.add("Name is required.");
+            }
+            if (customerDto.getAddress() == null || customerDto.getAddress().isEmpty()) {
+                validationErrors.add("Address is required.");
+            }
+            if (customerDto.getSalary() == 0) {
+                validationErrors.add("Salary is required.");
+            }
 
             Boolean result = customerBO.updateCustomer(customerDto);
             if (result) {
