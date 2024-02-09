@@ -45,6 +45,26 @@ public class CustomerServletAPI extends HttpServlet {
             ObjectMapper objectMapper = new ObjectMapper();
             CustomerDto customerDto = objectMapper.readValue(jsonInput.toString(), CustomerDto.class);
 
+            if (customerDto.getName() == null || customerDto.getName().isEmpty()) {
+                validationErrors.add("Name is required.");
+            }
+            if (customerDto.getAddress() == null || customerDto.getAddress().isEmpty()) {
+                validationErrors.add("Address is required.");
+            }
+            if (customerDto.getSalary() == 0) {
+                validationErrors.add("Salary is required.");
+            }
+
+
+            if (!validationErrors.isEmpty()) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                response.getWriter().println("Validation errors:");
+                for (String error : validationErrors) {
+                    response.getWriter().println("- " + error);
+                }
+                return;
+            }
+
             Boolean result = customerBO.addCustomer(customerDto);
 
             if (result) {
