@@ -203,10 +203,24 @@ public class CustomerServletAPI extends HttpServlet {
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("text/plain");
+        ArrayList<String> validationErrors = new ArrayList<>();
         try {
             String customerId = request.getPathInfo().substring(1);
-            Boolean result = customerBO.deleteCustomer(customerId);
+            if (customerId.isEmpty()) {
+                validationErrors.add("Customer ID is required.");
+            }
 
+            boolean result = customerBO.deleteCustomer(customerId);
+
+            if (!validationErrors.isEmpty()) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                response.getWriter().println("Validation errors:");
+                for (String error : validationErrors) {
+                    response.getWriter().println("- " + error);
+                }
+                validationErrors.clear();
+                return;
+            }
             if (result) {
                 response.getWriter().println("Customer has been deleted successfully");
             } else {
